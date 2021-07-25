@@ -11,9 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Luckiest+Guy&family=Poor+Story&family=Shippori+Mincho+B1&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
 
   <!--  -->
 
@@ -27,26 +25,23 @@
 
 <body>
   <header id="header"></header>
+  <h1 id="sputtr">Sputtr</h1>
 
-  <div>
-    <h1 id="sputtr">Sputtr</h1>
-  </div>
-  <div id="index-buttons">
-    <form method="POST" action="/register">
-      <a href="./sputtr_register.ejs">
-        <button type="submit" class="register-button">
-          Register
-        </button>
-      </a>
-    </form>
-    <form method="POST" action="/login">
-      <a href="./sputtr_login.ejs">
-        <button type="submit" class="index-login">
-          Login
-        </button>
-      </a>
-    </form>
-  </div>
+  <form method="POST" action="/login">
+    <p>
+      Name:
+      <input type="name" name="name" />
+      Email:
+      <input type="email" name="email" />
+      Password:
+      <input type="password" name="password" />
+    </p>
+    <a href="./sputtr_login.ejs">
+      <button type="submit" class="index-register">
+        Register
+      </button>
+    </a>
+  </form>
 </body>
 
 </html>
