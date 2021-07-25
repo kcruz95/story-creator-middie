@@ -5,21 +5,32 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
-      .then(data => {
+      .then((data) => {
         const users = data.rows;
         res.json({ users });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
+    // GET request for viewing of login page
+    router.get('/login', (req, res) => {
+
+      res.render("login");
+    });
+
+    // POST request to logut by setting cookie to NULL
+    router.post("/logout", (req, res) => {
+      req.session = null;
+
+      // Redirects back to homepage
+      res.redirect("/");
+    });
   });
   return router;
 };
