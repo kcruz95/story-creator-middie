@@ -11,15 +11,13 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Luckiest+Guy&family=Poor+Story&family=Shippori+Mincho+B1&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
 
   <!--  -->
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/index.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/login.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -27,25 +25,21 @@
 
 <body>
   <header id="header"></header>
+  <h1 id="sputtr">Sputtr</h1>
 
-  <div>
-    <h1 id="sputtr">Sputtr</h1>
-  </div>
-  <div id="index-buttons">
-      <a href=/register>
-        <button class="register-button">
-          Register
-        </button>
-      </a>
-
-
-      <a href=/login >
-        <button class="index-login">
-          Login
-        </button>
-      </a>
-
-  </div>
+  <form method="POST" action="/login">
+    <p>
+      Email:
+      <input type="email" name="email" />
+      Password:
+      <input type="password" name="password" />
+    </p>
+    <a href="./sputtr_login.ejs">
+      <button type="submit" class="index-login">
+        Login
+      </button>
+    </a>
+  </form>
 </body>
 
 </html>

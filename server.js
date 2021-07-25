@@ -77,9 +77,10 @@ const findEmail = (email) => {
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
-});
+}); // fix app post later
 
 app.get("/login", (req, res) => {
+
   res.render("login");
 });
 
@@ -94,36 +95,36 @@ app.post("/login", (req,res) => {
   if (!email || !password) {
     res.status(401).send(('incorrect user or pass'));
   }
-  const user = findEMail(email);
+  const user = findEmail(email);
   if(!user || user.password !== password) {
     res.status(401).send('incorrect user or pass');
   }
   req.session.userId = user.id;
-  res.redirect('/');
+  res.redirect('/'); // redirect to main page change later
 
 });
 
-app.post("/register", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+// app.post("/register", (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
 
-  if (!email || !password) {
-    res.status(400).send(('sign up incomplete'));
-  }
-  const user = findEMail(email);
-  if(user) {
-    res.status(400).send('user exist');
-  }
-  const id = Math.floor(Math.random() = 1000) + 1;
+//   if (!email || !password) {
+//     res.status(400).send(('sign up incomplete'));
+//   }
+//   const user = findEMail(email);
+//   if(user) {
+//     res.status(400).send('user exist');
+//   }
+//   const id = Math.floor(Math.random() = 1000) + 1;
 
-  users[id] = {
-    id,
-    email,
-    password
-  };
-  req.session.userId = users[id].id;
-  res.redirect('/');
-})
+//   users[id] = {
+//     id,
+//     email,
+//     password
+//   };
+//   req.session.userId = users[id].id;
+//   res.redirect('/'); // fix app post later
+// })
 
 // POST request to logut by setting cookie to NULL
 app.post("/logout", (req, res) => {
