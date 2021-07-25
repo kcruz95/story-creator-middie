@@ -104,27 +104,27 @@ app.post("/login", (req,res) => {
 
 });
 
-// app.post("/register", (req, res) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
+app.post("/register", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
 
-//   if (!email || !password) {
-//     res.status(400).send(('sign up incomplete'));
-//   }
-//   const user = findEMail(email);
-//   if(user) {
-//     res.status(400).send('user exist');
-//   }
-//   const id = Math.floor(Math.random() = 1000) + 1;
+  if (!email || !password) {
+    res.status(400).send(('sign up incomplete'));
+  }
+  const user = findEMail(email);
+  if(user) {
+    res.status(400).send('user exist');
+  }
+  const id = Math.floor(Math.random() = 1000) + 1;
 
-//   users[id] = {
-//     id,
-//     email,
-//     password
-//   };
-//   req.session.userId = users[id].id;
-//   res.redirect('/'); // fix app post later
-// })
+  users[id] = {
+    id,
+    email,
+    password
+  };
+  req.session.userId = users[id].id;
+  res.redirect('/'); // fix app post later
+})
 
 // POST request to logut by setting cookie to NULL
 app.post("/logout", (req, res) => {
