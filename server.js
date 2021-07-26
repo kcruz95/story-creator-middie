@@ -43,34 +43,20 @@ app.use(
 );
 app.use(express.static("public"));
 
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
+const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
+app.use("/login", loginRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
-const users = {
-  user: {
-    id: "user",
-    email: "user@gmail.com",
-    password: "1234",
-  },
-};
-
-const findEmail = (email) => {
-  for (const userId in users) {
-    const user = users[userId];
-    if (user.email === email) {
-      return user;
-    }
-  }
-  return null;
-};
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -79,60 +65,6 @@ app.get("/", (req, res) => {
   res.render("index");
 }); // fix app post later
 
-app.get("/login", (req, res) => {
-
-  res.render("login");
-});
-
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-app.post("/login", (req,res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  if (!email || !password) {
-    res.status(401).send(('incorrect user or pass'));
-  }
-  const user = findEmail(email);
-  if(!user || user.password !== password) {
-    res.status(401).send('incorrect user or pass');
-  }
-  req.session.userId = user.id;
-  res.redirect('/'); // redirect to main page change later
-
-});
-
-app.post("/register", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  if (!email || !password) {
-    res.status(400).send(('sign up incomplete'));
-  }
-  const user = findEMail(email);
-  if(user) {
-    res.status(400).send('user exist');
-  }
-  const id = Math.floor(Math.random() = 1000) + 1;
-
-  users[id] = {
-    id,
-    email,
-    password
-  };
-  req.session.userId = users[id].id;
-  res.redirect('/'); // fix app post later
-})
-
-// POST request to logut by setting cookie to NULL
-app.post("/logout", (req, res) => {
-  req.session = null;
-
-  // Redirects back to homepage
-  res.redirect("/");
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

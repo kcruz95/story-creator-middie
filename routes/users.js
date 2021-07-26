@@ -19,20 +19,12 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-    // // GET request for viewing of login page
-    // router.get('/login', (req, res) => {
 
-    //   res.render("login");
-    // });
 
-    // // POST request to logut by setting cookie to NULL
-    // router.post("/logout", (req, res) => {
-    //   req.session = null;
-
-    //   // Redirects back to homepage
-    //   res.redirect("/");
-    // });
   });
+
+
   return router;
 };
+
 
