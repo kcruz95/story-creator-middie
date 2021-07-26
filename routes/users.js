@@ -19,19 +19,21 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-    // // GET request for viewing of login page
-    // router.get('/login', (req, res) => {
+      router.post("/login", (req,res) => {
+        const email = req.body.email;
+        const password = req.body.password;
 
-    //   res.render("login");
-    // });
+        if (!email || !password) {
+          res.status(401).send(('incorrect user or pass'));
+        }
+        const user = findEmail(email);
+        if(!user || user.password !== password) {
+          res.status(401).send('incorrect user or pass');
+        }
+        req.session.userId = user.id;
+        res.redirect('/'); // redirect to main page change later
 
-    // // POST request to logut by setting cookie to NULL
-    // router.post("/logout", (req, res) => {
-    //   req.session = null;
-
-    //   // Redirects back to homepage
-    //   res.redirect("/");
-    // });
+      });
   });
   return router;
 };
