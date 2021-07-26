@@ -65,6 +65,14 @@ div #login-buttons {
   margin-top: 1em;
 }
 
+a {
+  text-decoration: none;
+}
+
+p .login-credens {
+
+}
+
 .login-credens {
   color: bisque;
   display: flex;
@@ -87,4 +95,8 @@ div #login-buttons {
   font-size: 32px;font-size: 32px;
   margin-top: 0.5em;
   margin-bottom: 0em;
+}
+
+.arrow {
+  color: maroon;
 }
