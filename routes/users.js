@@ -19,22 +19,12 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-      router.post("/login", (req,res) => {
-        const email = req.body.email;
-        const password = req.body.password;
 
-        if (!email || !password) {
-          res.status(401).send(('incorrect user or pass'));
-        }
-        const user = findEmail(email);
-        if(!user || user.password !== password) {
-          res.status(401).send('incorrect user or pass');
-        }
-        req.session.userId = user.id;
-        res.redirect('/'); // redirect to main page change later
 
-      });
   });
+
+
   return router;
 };
+
 
