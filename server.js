@@ -62,6 +62,22 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+app.get("/error", (req, res) => {
+  res.render("error");
+});
+
+app.get("/stories", (req, res) => {
+  res.render("stories");
+});
+
+app.get("/storyteller", (req, res) => {
+  res.render("storyteller");
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
