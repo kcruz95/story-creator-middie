@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = (db) => {
+// imported helper functions
+
+module.exports = (db, database) => {
   // GET back the view for login page
   router.get("/", (req, res) => {
     res.render("login");
@@ -15,9 +17,10 @@ module.exports = (db) => {
       res.status(401).send("incorrect user or pass");
     }
 
-    db.query(`SELECT *FROM users WHERE email = $1`, [email]).then((result) => {
-      const user = result.rows[0];
+    // db.query(`SELECT *FROM users WHERE email = $1`, [email]).then((result) => {
+    //   const user = result.rows[0];
 
+    database.getUserWithEmail(email).then((user) => {
       if (!user || user.password !== password) {
         res.status(401).send("incorrect user or pass");
       }
@@ -36,4 +39,3 @@ module.exports = (db) => {
 
   return router;
 };
-
