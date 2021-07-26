@@ -67,6 +67,10 @@ app.get("/", (req, res) => {
   res.render("index");
 }); // fix app post later
 
+// app.get("/login", (req, res) => {
+
+//   res.render("login");
+// });
 
 // app.get("/error", (req, res) => {
 //   res.render("error");
