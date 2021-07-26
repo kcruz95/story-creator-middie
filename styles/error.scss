@@ -1,0 +1,34 @@
+body {
+  background-color: turquoise;
+}
+
+body div {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#sputtr {
+  align-items: center;
+  animation: bounce 2.5s infinite;
+  color: bisque;
+  display: flex;
+  font-family: 'Dancing Script', cursive;
+  font-size: 200px;
+  justify-content: center;
+  margin: 85px;
+  padding-right: 0em;
+  position: absolute;
+}
+
+#error-notif {
+  // align-items: center;
+  color: maroon;
+  display: flex;
+  // flex-direction: column;
+  font-size: 32px;
+  font-family: 'Luckiest Guy';
+  // justify-content: flex-end;
+  margin: 0.5em;
+  padding: 20px;
+}

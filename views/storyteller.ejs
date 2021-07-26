@@ -19,7 +19,7 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/index.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/stories.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -28,17 +28,35 @@
 <body>
 
   <div>
-    <h1 id="sputtr">Sputtr</h1>
+    <header id="header">
+      <div>
+        <a href="/">
+          <button class="login-back">
+            <img src="/w6/story-creator-middie/img icons/back.png" alt="login-back-arrow">
+          </button>
+        </a>
+      </div>
+      <div>
+        <h1 id="header-sputtr">Sputtr</h1>
+      </div>
+      <div>
+        <a href="/stories">
+          <button class="header-saved">
+            Sputtr'd tales of old
+          </button>
+        </a>
+      </div>
+    </header>
   </div>
-  <div id="index-buttons">
-    <a href="/register">
-      <button class="register-button">
-        Register
+  <div id="teller-buttons">
+    <a href="">
+      <button class="teller-template">
+        ${saved_story1}
       </button>
     </a>
-    <a href="/login">
-      <button class="index-login">
-        Login
+    <a href="">
+      <button class="teller-template">
+        ${saved_story2}
       </button>
     </a>
   </div>

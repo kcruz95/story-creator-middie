@@ -17,31 +17,37 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/index.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/register.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <header id="header"></header>
-  <h1 id="sputtr">Sputtr</h1>
+  <div>
+    <h1 id="sputtr">Sputtr</h1>
+  </div>
 
-  <form method="POST" action="/login">
-    <p>
-      Name:
-      <input type="name" name="name" />
-      Email:
-      <input type="email" name="email" />
-      Password:
-      <input type="password" name="password" />
-    </p>
-    <a href="./sputtr_login.ejs">
-      <button type="submit" class="index-register">
+  <p class="register-credens">
+    Username:
+    <input type="username" name="username" />
+    Email:
+    <input type="email" name="email" />
+    Password:
+    <input type="password" name="password" />
+  </p>
+  <div id="register-buttons">
+    <a href="/login">
+      <button type="submit" class="register-button">
         Register
       </button>
     </a>
-  </form>
+    <a href="/">
+      <button class="register-back">
+        <img src="/w6/story-creator-middie/img icons/back.png" alt="register-back-arrow">
+      </button>
+    </a>
+  </div>
 </body>
 
 </html>
