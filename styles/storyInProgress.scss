@@ -79,7 +79,19 @@ button .teller-template {
   margin-top: 1em;
 }
 
-p.teller-input {
+.teller-display {
+  background-color: bisque;
+  border: 4px solid maroon;
+  border-radius: 29px;
+  color: maroon;
+  font-size: 32px;
+  font-family: 'Luckiest Guy';
+  margin-top: 3em;
+  padding: 1em;
+  width: 100%;
+}
+
+.teller-input {
   background-color: bisque;
   border: none;
   border-radius: 29px;
