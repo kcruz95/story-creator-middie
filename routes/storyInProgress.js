@@ -7,12 +7,22 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     res.render("storyInProgress");
   });
-
- // POST request to create NEW STORY
+  // POST request to create NEW STORY
  router.post("/", (req,res) => {
-
  });
 
+  // router.post("/", (req, res) => {
+  //   console.log('reqbody:', req.body);
+  //   const content = req.body.content;
+  //   const storyId = req.body.story_id;
+  //   const userId = req.session.userId;
+  //   const contribution = {userId, storyId, content};
+
+  //   database.addContribution(contribution)
+  //     .then((contribution) => {
+  //       res.redirect("storyInProgress");
+  //     });
+  // });
   /*
   ADD STORY
   story teller route:
