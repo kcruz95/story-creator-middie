@@ -6,7 +6,13 @@ Our middie proj is a story-making website for kids called Sputtr.
 It is set up in a way that kids can make their own stories using preset sentence templates of fairytales or kids stories or they can write themselves.
 */
 --CREATE DATABASE sputtr;
-DROP TABLE IF EXISTS widgets CASCADE;
+--DROP DATABASE IF EXISTS sputtr;
+--CREATE DATABASE sputtr OWNER labber;
+
+-- REASSIGN OWNED BY jhan TO labber;
+-- ALTER DATABASE sputtr OWNER TO labber;
+
+--DROP TABLE IF EXISTS widgets CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS stories CASCADE;
 DROP TABLE IF EXISTS contributions CASCADE;

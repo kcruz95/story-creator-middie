@@ -9,21 +9,32 @@ module.exports = (db) => {
     res.render("newStory");
   });
 
-  router.post("/", (req, res) => {
-    const content = req.body.content;
+  // Antony's
+  // router.post("/", (req, res) => {
+  //   const content = req.body.content;
+  //   const userId = req.session.userId;
+  //   const story = {creator_id: userId,
+  //     title: content};
+
+  //   database.addStory(story)
+  //     .then((story) => {
+  //       res.redirect("storyInProgress");
+  //     });
+
+  // })
+
+
+  // POST request to create NEW STORY
+  router.post('/stories', (req, res) => {
     const userId = req.session.userId;
-    const story = {creator_id: userId,
-      title: content}
-
-    database.addStory(story)
-    .then((story) => {
-      res.redirect("storyInProgress");
-    })
-
-  })
-
-
- // POST request to create NEW STORY
-
+    database.addStory({...req.body, userId})
+      .then(story => {
+        res.send(story);
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e);
+      });
+  });
   return router;
 };

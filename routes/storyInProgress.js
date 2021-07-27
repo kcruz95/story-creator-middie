@@ -8,10 +8,10 @@ module.exports = (db) => {
     res.render("storyInProgress");
   });
 
- // POST request to create NEW STORY
- router.post("/", (req,res) => {
+  // POST request to create NEW STORY
+  router.post("/", (req,res) => {
 
- });
+  });
 
   /*
   ADD STORY
