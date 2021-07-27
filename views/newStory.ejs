@@ -2,39 +2,67 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Sputtr</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <!-- CSS -->
 
-  <title>New URL - TinyApp Example</title>
+  <!-- External CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Luckiest+Guy&family=Poor+Story&family=Shippori+Mincho+B1&display=swap"
+    rel="stylesheet">
+
+  <!--  -->
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/stories.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <%- include('partials/_header') %>
-    <main style="margin: 1em;">
-      <h3>Create TinyURL</h3>
-      <form class="form-inline" action="/urls" method="POST">
-        <div class="form-group mb-2">
-          <label for="longURL">Enter a URL:</label>
-          <input class="form-control" type="text" name="longURL" placeholder="http://"
-            style="width: 300px; margin: 1em">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </form>
-    </main>
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"></script>
+  <div>
+    <header id="header">
+      <div>
+        <a href="/">
+          <button class="header-logout">
+            Logout
+          </button>
+        </a>
+      </div>
+      <div>
+        <h1 id="header-sputtr">Sputtr</h1>
+      </div>
+
+      <div>
+        <a href="/completedStory">
+          <button class="header-saved">
+            Sputtr'd tales of old
+          </button>
+        </a>
+      </div>
+
+    </header>
+  </div>
+
+  <main style="margin: 1em">
+    <h3>Sputtr a title!</h3>
+    <form class="form-inline" action="/storyInProgress" method="POST">
+      <div class="form-group mb-2">
+        <label for="newStoryText">Give it a name:</label>
+
+        <input class="form-control" type="text" style="width: 300px; margin: 1em" placeholder="Give it a name:" />
+
+        <input class="form-control" type="text" style="width: 300px; margin: 1em" placeholder="What happened next?" />
+
+        <button type="submit">Continue that tale!</button>
+      </div>
+    </form>
 </body>
 
 </html>
