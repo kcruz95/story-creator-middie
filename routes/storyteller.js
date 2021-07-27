@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = (db) => {
+module.exports = (db, database) => {
 
   // GET request to view storyteller page
   router.get("/", (req, res) => {
     res.render("storyteller");
   });
 
- // POST request to create NEW STORY
- router.post("/", (req,res) => {
+  // POST request to create NEW STORY
+  router.post("/", (req, res) => {
 
- });
+  });
 
   /*
   ADD STORY
@@ -26,6 +26,8 @@ module.exports = (db) => {
   VIEW CURRENT CONTRIBUTION
   user can view current contribution but not accept them
   users can up vote contribution
+
+  --------------------------------
 
   UP COUNT:
   when upvoted like values goes up
