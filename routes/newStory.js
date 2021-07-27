@@ -9,7 +9,9 @@ module.exports = (db) => {
     res.render("newStory");
   });
 
+  // POST request to create NEW STORY
   router.post("/", (req, res) => {
+
     const content = req.body.content;
     const userId = req.session.userId;
     const story = {
@@ -25,10 +27,6 @@ module.exports = (db) => {
   })
 
 
-  // POST request to create NEW STORY
-  // app.post("/storyInProgress", (req, res) => {
-  //   res.redirect("/storyInProgress")
-  // })
 
   return router;
 };
