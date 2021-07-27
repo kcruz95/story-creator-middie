@@ -9,12 +9,18 @@ module.exports = (db) => {
     res.render("newStory");
   });
 
-  // Antony's
-  // router.post("/", (req, res) => {
-  //   const content = req.body.content;
-  //   const userId = req.session.userId;
-  //   const story = {creator_id: userId,
-  //     title: content};
+  // POST request to create NEW STORY
+  router.post("/", (req, res) => {
+
+    const content = req.body.content;
+    const userId = req.session.userId;
+    const story = {creator_id: userId,
+      title: content}
+
+    database.addStory(story)
+    .then((story) => {
+      res.redirect("storyInProgress");
+    })
 
   //   database.addStory(story)
   //     .then((story) => {

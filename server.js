@@ -26,7 +26,7 @@ app.use(morgan("dev"));
 app.use(
   cookieSession({
     name: "session",
-    keys: ["key1"],
+    keys: ["key1"]
   })
 );
 
