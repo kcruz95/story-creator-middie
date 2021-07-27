@@ -11,20 +11,11 @@ const router = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then((data) => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-
-
+    // const userId = req.session.userId;
+    // if (!userId) {
+    res.send({message: "not logged in"});
+    return;
+  // });
   });
-
-
   return router;
 };
-
-
