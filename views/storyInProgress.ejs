@@ -55,15 +55,20 @@
     </p>
   </div>
 
+  <!-- write to make sure ifCompleted === false in order for title(teller-display) && teller-input to show up -->
+  <!-- also write to make ifCompleted === true -->
+  <!-- title inputbox is in story -->
   <div id="teller-buttons">
-    <p class="teller-display">Story in Progress</p>
+    <p class="teller-display">
 
-    <textarea class="teller-input" placeholder="What happened next?"></textarea>
-    <a href="/newStory.ejs">
-      <button class="teller-template">
-        Submit
-      </button>
-    </a>
+    </p>
+    <form class="form-inline" action="/storyInProgress" method="POST">
+      <textarea name="content" class="teller-input"
+      placeholder="What happened next?"></textarea>
+        <button class="teller-template" type='submit'>
+          Submit
+        </button>
+    </form>
   </div>
 </body>
 
