@@ -14,13 +14,15 @@ module.exports = (db) => {
 
     const content = req.body.content;
     const userId = req.session.userId;
-    const story = {creator_id: userId,
-      title: content}
+    const story = {
+      creator_id: userId,
+      title: content
+    }
 
     database.addStory(story)
-    .then((story) => {
-      res.redirect("storyInProgress");
-    })
+      .then((story) => {
+        res.redirect("storyInProgress");
+      })
 
   })
 
