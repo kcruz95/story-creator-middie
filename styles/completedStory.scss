@@ -23,11 +23,13 @@ body {
   font-size: 80px;
   justify-content: center;
   margin: 85px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   padding-right: 0em;
   // position: absolute;
 }
 
-button .login-back {
+button .header-logout {
   display: flex;
   justify-content: flex-start;
   position: relative;
@@ -56,4 +58,8 @@ div button:hover {
 div button:active {
   background-color: goldenrod;
   transform: scale(0.9);
+}
+
+a {
+  text-decoration: none;
 }

@@ -76,8 +76,8 @@ app.get("/", (req, res) => {
 //   res.render("error");
 // });
 
-app.get("/stories", (req, res) => {
-  res.render("stories");
+app.get("/completedStory", (req, res) => {
+  res.render("completedStory");
 });
 
 app.listen(PORT, () => {

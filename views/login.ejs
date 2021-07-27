@@ -11,7 +11,9 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Luckiest+Guy&family=Poor+Story&family=Shippori+Mincho+B1&display=swap"
+    rel="stylesheet">
 
   <!--  -->
 
@@ -21,6 +23,8 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <script src="https://kit.fontawesome.com/998dd14d5b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -29,20 +33,18 @@
   </div>
 
   <p class="login-credens">
-    Email:
-    <input type="email" name="email" />
-    Password:
-    <input type="password" name="password" />
+    <input type="email" name="email" placeholder="Email" />
+    <input type="password" name="password" placeholder="Password" />
   </p>
   <div id="login-buttons">
-    <a href="/stories">
+    <a href="/completedStory">
       <button type="submit" class="login-login">
         Login
       </button>
     </a>
     <a href="/">
       <button class="login-back">
-        <img src="/w6/story-creator-middie/img icons/back.png" alt="login-back-arrow">
+        <i class="far fa-arrow-alt-circle-left arrow"></i>
       </button>
     </a>
   </div>
