@@ -17,7 +17,7 @@ module.exports = (db) => {
 
     database.addStory(story)
     .then((story) => {
-      res.redirect("storyteller");
+      res.redirect("storyInProgress");
     })
 
   })

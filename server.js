@@ -50,7 +50,7 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const loginRoutes = require("./routes/login");
 const newStory = require("./routes/newStory");
-const storyteller = require("./routes/storyteller");
+const storyteller = require("./routes/storyInProgress");
 
 
 // Mount all resource routes
@@ -79,8 +79,8 @@ app.get("/", (req, res) => {
 //   res.render("error");
 // });
 
-app.get("/stories", (req, res) => {
-  res.render("stories");
+app.get("/completedStory", (req, res) => {
+  res.render("completedStory");
 });
 
 app.listen(PORT, () => {
