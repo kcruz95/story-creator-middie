@@ -70,12 +70,12 @@ app.get("/error", (req, res) => {
   res.render("error");
 });
 
-app.get("/stories", (req, res) => {
-  res.render("stories");
+app.get("/completedStory", (req, res) => {
+  res.render("completedStory");
 });
 
-app.get("/storyteller", (req, res) => {
-  res.render("storyteller");
+app.get("/storyInProgress", (req, res) => {
+  res.render("storyInProgress");
 });
 
 app.listen(PORT, () => {
