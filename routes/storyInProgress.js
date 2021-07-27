@@ -5,7 +5,7 @@ module.exports = (db) => {
 
   // GET request to view storyteller page
   router.get("/", (req, res) => {
-    res.render("storyteller");
+    res.render("storyInProgress");
   });
 
  // POST request to create NEW STORY
