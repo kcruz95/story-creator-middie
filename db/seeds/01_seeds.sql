@@ -1,8 +1,8 @@
-INSERT INTO users (email, password)
+INSERT INTO users (name, email, password)
 VALUES
-('a@a.com', 123),
-('b@b.com', 123),
-('c@c.com', 123);
+('alice', 'a@a.com', 123),
+('bobby', 'b@b.com', 123),
+('chris', 'c@c.com', 123);
 
 INSERT INTO stories (creator_id, title)
 VALUES
