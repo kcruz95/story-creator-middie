@@ -26,18 +26,43 @@
 </head>
 
 <body>
+  <div>
+    <header id="header">
+      <div>
+        <a href="/">
+          <button class="header-logout">
+            Logout
+          </button>
+        </a>
+      </div>
+      <div>
+        <h1 id="header-sputtr">Sputtr</h1>
+      </div>
+
+      <div>
+        <a href="/completedStory">
+          <button class="header-saved">
+            Sputtr'd tales of old
+          </button>
+        </a>
+      </div>
+
+    </header>
+  </div>
+
   <main style="margin: 1em">
-    <h3>Create a story</h3>
+    <h3>Sputtr a title!</h3>
     <form class="form-inline" action="/newStory" method="POST">
       <div class="form-group mb-2">
-        <label for="newStoryText">start it here:</label>
-        <input name="content"
-          class="form-control"
-          type="text"
-          value="type here"
-          style="width: 300px; margin: 1em"
-        />
-        <button type="submit">Submit</button>
+        <!-- <label for="newStoryText">start it here:</label>
+        <input name="content" class="form-control" type="text" value="type here" style="width: 300px; margin: 1em" /> -->
+
+        <label for="newStoryText">Give it a name:</label>
+
+        <input class="form-control" type="text" style="width: 300px; margin: 1em" placeholder="Give it a name:" />
+
+        <button type="submit">Let's Continue!</button>
+
       </div>
     </form>
 </body>
