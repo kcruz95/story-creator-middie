@@ -49,21 +49,13 @@
     </header>
   </div>
 
-  <div id="story-post">
-    <p>
-
-    </p>
-  </div>
-
-  <div id="teller-buttons">
-    <p class="teller-display">Story in Progress</p>
-
-    <textarea class="teller-input" placeholder="What happened next?"></textarea>
-    <a href="/newStory.ejs">
-      <button class="teller-template">
+  <form class="form-inline" action="/storyInProgress" method="POST">
+    <textarea name="content" class="teller-input"
+    placeholder="What happened next?"></textarea>
+      <button class="teller-template" type='submit'>
         Submit
       </button>
-    </a>
+  </form>
   </div>
 </body>
 
