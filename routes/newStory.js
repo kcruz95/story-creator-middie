@@ -18,10 +18,10 @@ module.exports = (db) => {
       title: content}
 
     database.addStory(story)
-    .then((story) => {
-      res.redirect("storyInProgress");
-    })
-
+      .then((story) => {
+        res.redirect("storyInProgress");
+      });
+  });
   //   database.addStory(story)
   //     .then((story) => {
   //       res.redirect("storyInProgress");

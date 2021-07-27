@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const database = require("./database");
 
 module.exports = (db) => {
 
@@ -11,6 +12,32 @@ module.exports = (db) => {
   // POST request to create NEW STORY
   router.post("/", (req,res) => {
 
+  });
+
+  // router.post("/", (req, res) => {
+
+  //   const content = req.body.content;
+  //   const userId = req.session.userId;
+  //   const story = {creator_id: userId,
+  //     title: content}
+
+  //   database.addStory(story)
+  //     .then((story) => {
+  //       res.redirect("storyInProgress");
+  //     });
+  // });
+
+  router.post("/", (req, res) => {
+    console.log('reqbody:', req.body);
+    const content = req.body.content;
+    const storyId = req.body.story_id;
+    const userId = req.session.userId;
+    const contribution = {userId, storyId, content};
+
+    database.addContribution(contribution)
+      .then((contribution) => {
+        res.redirect("storyInProgress");
+      });
   });
 
   /*
