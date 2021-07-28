@@ -109,9 +109,9 @@ exports.getAllStories = getAllStories;
 /// Stories
 
 /**
- * Get all reservations for a single user.
- * @param {string} guest_id The id of the user.
- * @return {Promise<[{}]>} A promise to the reservations.
+ * Get all contributions for a single user.
+ * @param {string} userId The id of the user.
+ * @return {Promise<[{}]>} A promise to the contributions.
  */
 
 
@@ -136,8 +136,7 @@ const getContributionsForStory = function(userId, storyId, limit = 10) {
             FROM contributions c
             JOIN users u ON c.userId = u.id
             JOIN stories s ON c.storyId = s.id
-            WHERE c.userId = $1
-            AND c.storyId = $2
+
             LIMIT $3`, [userId, storyId, limit])
     .then((result) => {
       return result.rows;
@@ -148,6 +147,10 @@ const getContributionsForStory = function(userId, storyId, limit = 10) {
 };
 exports.getContributionsForStory = getContributionsForStory;
 
+/*
+WHERE c.userId = $1
+AND c.storyId = $2
+*/
 /// Properties
 
 /**
@@ -263,7 +266,7 @@ const getVoteCount = function(contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-const updateContribution = function(contributionId) {
+const updateContributions = function(contributionId) {
   return pool
     .query(`
     UPDATE contributions
@@ -284,4 +287,4 @@ const updateContribution = function(contributionId) {
       console.error(err.message);
     });
 };
-exports.updateContribution = updateContribution;
+exports.updateContributions = updateContributions;
