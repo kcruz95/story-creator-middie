@@ -11,6 +11,35 @@ module.exports = (db) => {
     res.render("storyInProgress", { stories: stories });
   });
 
+//   // GET request to edit URL with the right user
+// app.get("/urls/:shortURL", (req, res) => {
+//   const shortURL = req.params.shortURL;
+
+//   // Return error if link is not found
+//   if (!urlDatabase[shortURL]) {
+//     return res.status(404).send("Url not found");
+//   }
+//   let currentUser = req.session["user_id"];
+//   let userId = urlDatabase[req.params.shortURL].userID;
+//   if (userId === currentUser) {
+//     const templateVars = {
+//       shortURL: req.params.shortURL,
+//       longURL: urlDatabase[req.params.shortURL].longURL,
+//       userID: urlDatabase[req.params.shortURL].userID,
+//       user: getUser(users, req.session["user_id"]),
+//     };
+//     return res.render("urls_show", templateVars);
+//   } else {
+//     return res
+//       .status(404)
+//       .send("You are not authorized to perform this action");
+//   }
+// });
+
+
+
+
+
   router.post("/", (req, res) => {
     const content = req.body.content;
     const storyId = req.body.storyId;
@@ -25,6 +54,8 @@ module.exports = (db) => {
       res.redirect("storyInProgress");
     });
   });
+
+
 
   // creator of story can accept a contribution;
   //this merges it to the rest of the story
