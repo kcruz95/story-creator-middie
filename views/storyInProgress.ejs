@@ -59,10 +59,15 @@
   <!-- also write to make ifCompleted === true -->
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
-    <p class="teller-display">
 
-    </p>
     <form class="form-inline" action="/storyInProgress" method="POST">
+
+      <select name="storyId" id="storyId" multiple>
+        <% for(let story in stories) { %>
+        <option value=<%= stories[story].id %>>
+          <%= stories[story].title %></option>
+        <% } %>
+      </select>
       <textarea name="content" class="teller-input"
       placeholder="What happened next?"></textarea>
         <button class="teller-template" type='submit'>
