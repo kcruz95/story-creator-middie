@@ -4,13 +4,22 @@ const database = require("./database");
 
 module.exports = (db) => {
 
-  // GET request to view storyteller page
+  //GET request to view storyteller page
   router.get("/", async(req, res) => {
     const stories = await database.getAllStories();
     console.log(stories);
     res.render("storyInProgress", {stories: stories
-      });
+    });
   });
+
+  // router.get("/", async(req, res) => {
+  //   //const stories = await database.getAllStories();
+  //   const contributions = await database.getContributionsForStory();
+  //   //console.log(stories);
+  //   console.log(contributions);
+  //   res.render("storyInProgress", {contributions
+  //   });
+  // });
 
   router.post("/", (req, res) => {
     const content = req.body.content;
@@ -27,6 +36,8 @@ module.exports = (db) => {
         res.redirect("storyInProgress");
       });
   });
+
+
   /*
   ADD STORY
   story teller route:

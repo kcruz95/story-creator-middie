@@ -130,7 +130,7 @@ module.exports = function(router, database) {
   //add contributions
   router.post('/contributions', (req, res) => {
     const userId = req.session.userId;
-    database.addContribution({...req.body, userId})
+    database.addContribution({...req.body, userId})  //everything in req.body (spread operator)
       .then(contribution => {
         res.send(contribution);
       })

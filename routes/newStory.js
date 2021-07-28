@@ -11,29 +11,19 @@ module.exports = (db) => {
 
   // POST request to create NEW STORY
   router.post("/", (req, res) => {
-    console.log('req.body:', req.body);
     const content = req.body.content;
     const userId = req.session.userId;
     const story = {
-      creator_id: userId,
+      creatorId: userId,
       title: content
-    }
+    };
 
     database.addStory(story)
       .then((story) => {
         res.redirect("storyInProgress");
-<<<<<<< HEAD
       });
-  });
-  //   database.addStory(story)
-  //     .then((story) => {
-  //       res.redirect("storyInProgress");
-  //     });
-=======
-      })
 
-  })
->>>>>>> master
+  });
 
   // })
 
