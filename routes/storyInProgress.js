@@ -56,9 +56,8 @@ module.exports = (db) => {
 };
 
 for (let content in contributions) {
-  <% contents[content]. %>
 
-    contributions[contribution].content;
+  contributions[contribution].content;
 
   console.log('contributor', contributor);
   console.log('contributors', contributors);
