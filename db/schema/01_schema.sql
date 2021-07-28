@@ -6,7 +6,13 @@ Our middie proj is a story-making website for kids called Sputtr.
 It is set up in a way that kids can make their own stories using preset sentence templates of fairytales or kids stories or they can write themselves.
 */
 --CREATE DATABASE sputtr;
-DROP TABLE IF EXISTS widgets CASCADE;
+--DROP DATABASE IF EXISTS sputtr;
+--CREATE DATABASE sputtr OWNER labber;
+
+-- REASSIGN OWNED BY jhan TO labber;
+-- ALTER DATABASE sputtr OWNER TO labber;
+
+--DROP TABLE IF EXISTS widgets CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS stories CASCADE;
 DROP TABLE IF EXISTS contributions CASCADE;
@@ -21,16 +27,16 @@ CREATE TABLE users (
 
 CREATE TABLE stories (
   id SERIAL PRIMARY KEY NOT NULL,
-  creator_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  creatorId INTEGER REFERENCES users(id) ON DELETE CASCADE,
   title VARCHAR(255) NOT NULL,
-  is_completed BOOLEAN NOT NULL DEFAULT FALSE--,
+  isCompleted BOOLEAN NOT NULL DEFAULT FALSE--,
   --completed_at DEFAULT NOW()::timestamp; --not sure if we need this
 );
 
 CREATE TABLE contributions (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  story_id INTEGER REFERENCES stories(id) ON DELETE CASCADE,
+  userId INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  storyId INTEGER REFERENCES stories(id) ON DELETE CASCADE,
   content TEXT NOT NULL,
   status VARCHAR(255) NOT NULL DEFAULT 'pending', --pending/denied/accepted // ENUM('pending','accepted','denied') - data type that stores string
   --upvote_count INTEGER NOT NULL DEFAULT 0, --to be removed
@@ -39,6 +45,6 @@ CREATE TABLE contributions (
 
 CREATE TABLE votes (
   id SERIAL PRIMARY KEY NOT NULL,
-  contribution_id INTEGER REFERENCES contributions(id) ON DELETE CASCADE,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  contributionId INTEGER REFERENCES contributions(id) ON DELETE CASCADE,
+  userId INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
