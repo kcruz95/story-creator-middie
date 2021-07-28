@@ -1,28 +1,32 @@
 const express = require("express");
 const router = express.Router();
+const database = require("./database");
 
 module.exports = (db) => {
 
   // GET request to view storyteller page
-  router.get("/", (req, res) => {
-    res.render("storyInProgress");
+  router.get("/", async(req, res) => {
+    const stories = await database.getAllStories();
+    console.log(stories);
+    res.render("storyInProgress", {stories: stories
+      });
   });
-  // POST request to create NEW STORY
- router.post("/", (req,res) => {
- });
 
-  // router.post("/", (req, res) => {
-  //   console.log('reqbody:', req.body);
-  //   const content = req.body.content;
-  //   const storyId = req.body.story_id;
-  //   const userId = req.session.userId;
-  //   const contribution = {userId, storyId, content};
+  router.post("/", (req, res) => {
+    const content = req.body.content;
+    const storyId = req.body.storyId;
+    const userId = req.session.userId;
+    const contribution = {
+      userId,
+      storyId,
+      content
+    };
 
-  //   database.addContribution(contribution)
-  //     .then((contribution) => {
-  //       res.redirect("storyInProgress");
-  //     });
-  // });
+    database.addContribution(contribution)
+      .then((contribution) => {
+        res.redirect("storyInProgress");
+      });
+  });
   /*
   ADD STORY
   story teller route:

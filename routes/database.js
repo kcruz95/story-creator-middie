@@ -91,12 +91,12 @@ exports.addUser = addUser;
  */
 
 
-const getAllStories = function(creator_id, limit = 10) {
+const getAllStories = function(creator_id = null, limit = 10) {
   return pool
     .query(`SELECT *
             FROM stories s
             JOIN users u ON s.creator_id = u.id
-            WHERE s.creator_id = $1 LIMIT $2`, [creator_id, limit])
+            `,)
     .then((result) => {
       return result.rows;
     })
@@ -211,7 +211,7 @@ const addContribution = function(contribution) {
     .query(
       `INSERT INTO contributions (user_id, story_id, content)
       VALUES ($1, $2, $3)
-      RETURNING *`, [contribution.user_id, contribution.story_id, contribution.content])
+      RETURNING *`, [contribution.userId, contribution.storyId, contribution.content])
     .then((result) => {
       return result.rows[0];
     })

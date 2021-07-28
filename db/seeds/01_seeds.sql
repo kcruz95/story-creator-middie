@@ -4,11 +4,17 @@ VALUES
 ('bobby', 'b@b.com', 123),
 ('chris', 'c@c.com', 123);
 
-INSERT INTO stories (creator_id, title)
+-- INSERT INTO stories (creator_id, title)
+-- VALUES
+-- (1,'title1'),
+-- (2,'title2'),
+-- (3,'title3');
+
+INSERT INTO stories (creator_id, title, is_completed)
 VALUES
-(1,'title1'),
-(2,'title2'),
-(3,'title3');
+(1,'title1', true),
+(2,'title2', false),
+(3,'title3', false);
 
 INSERT INTO contributions (user_id, story_id, content)
 VALUES
