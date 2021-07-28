@@ -64,47 +64,20 @@
 
       <select name="storyId" id="storyId" multiple>
         <% for(let story in stories) { %>
-          <option value=<%=stories[story].id %>>
-            <%= stories[story].title %>
-          </option>
-          <% } %>
-
-            <% %>
+        <option value=<%= stories[story].id %>>
+          <%= stories[story].title %></option>
+        <% } %>
       </select>
-      <form method="GET" action="/stories/<%= story %>">
+      <textarea name="content" class="teller-input"
+      placeholder="What happened next?"></textarea>
         <button class="teller-template" type='submit'>
           Submit
         </button>
-      </form>
 
 
 
     </form>
   </div>
-
-  <% for (let contributors in stories); { %>
-    <% for (let contributor in contributors); { %>
-      <% console.log('contributor', contributor); %>
-        <% console.log('contributors', contributors); %>
-          <% console.log('stories', stories); %>
-            <% } %>
-
-
-
-              <% if(id===owner) { %>
-                <% } %>
-                  <!-- change status from pending to accept -->
-                  <% let content='accepted' ; %>
-                    <% } %>
-                      <% else if (contributions.content !==owner) {%>
-                        <!-- change status to deny -->
-                        <% let content==='denied' ; %>
-                          <% }; %>
-
-                            <!-- use this if statement for false -->
-                            <%= if (!content===accepted) { %>
-                              <%= %>
-                                <%= <span></span>; %>
 </body>
 
 </html>
