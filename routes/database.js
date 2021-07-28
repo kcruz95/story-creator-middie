@@ -127,8 +127,8 @@ const getAllContributions = function(userId, limit = 10) {
   return pool
     .query(`SELECT *
             FROM contributions c
-            JOIN users u ON c.userId = u.id
-            WHERE c.userId = $1 LIMIT $2`, [userId, limit])
+            JOIN users u ON c.userId = u.id`
+            /*WHERE c.userId = $1 LIMIT $2`, [userId, limit]*/)
     .then((result) => {
       return result.rows;
     })

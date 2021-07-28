@@ -22,18 +22,12 @@ module.exports = (db) => {
     database.addStory(story)
       .then((story) => {
         res.redirect("storyInProgress");
-<<<<<<< HEAD
       });
   });
   //   database.addStory(story)
   //     .then((story) => {
   //       res.redirect("storyInProgress");
   //     });
-=======
-      })
-
-  })
->>>>>>> master
 
   // })
 
