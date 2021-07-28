@@ -1,8 +1,10 @@
 const express = require("express");
+const { Pool } = require("pg");
 const router = express.Router();
 const database = require("./database");
 
 module.exports = (db) => {
+
 
   //GET request to view storyteller page
   router.get("/", async(req, res) => {
@@ -21,6 +23,7 @@ module.exports = (db) => {
   //   });
   // });
 
+
   router.post("/", (req, res) => {
     const content = req.body.content;
     const storyId = req.body.storyId;
@@ -28,13 +31,20 @@ module.exports = (db) => {
     const contribution = {
       userId,
       storyId,
-      content
+      content,
     };
 
-    database.addContribution(contribution)
-      .then((contribution) => {
-        res.redirect("storyInProgress");
-      });
+    database.addContribution(contribution).then((contribution) => {
+      res.redirect("storyInProgress");
+    });
+  });
+  
+    router.post("/accept", (req, res) => {
+    const contributionid = req.body.contributionsid;
+    return pool.query(
+      `UPDATE contributions set status = "accepted" where id = ${contributionid}`
+    );
+     res.redirect("/storyInProgress");
   });
 
 

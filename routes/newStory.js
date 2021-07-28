@@ -23,7 +23,9 @@ module.exports = (db) => {
         res.redirect("storyInProgress");
       });
 
+
   });
+
 
   // })
 
