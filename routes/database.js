@@ -91,7 +91,7 @@ exports.addUser = addUser;
  */
 
 
-const getAllStories = function(creator_id = null, limit = 10) {
+const getAllStories = function (creator_id = null, limit = 10) {
   return pool
     .query(`SELECT *
             FROM stories s
@@ -115,7 +115,7 @@ exports.getAllStories = getAllStories;
  */
 
 
-const getAllContributions = function(user_id, limit = 10) {
+const getAllContributions = function (user_id, limit = 10) {
   return pool
     .query(`SELECT *
             FROM contributions c
@@ -129,6 +129,24 @@ const getAllContributions = function(user_id, limit = 10) {
     });
 };
 exports.getAllContributions = getAllContributions;
+
+const getContributionsForStory = function (user_id, story_id, limit = 10) {
+  return pool
+    .query(`SELECT *
+            FROM contributions c
+            JOIN users u ON c.user_id = u.id
+            JOIN stories s ON c.story_id = s.id
+            WHERE c.user_id = $1
+            AND c.story_id = $2
+            LIMIT $2`, [user_id, story_id, limit])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+exports.getContributionsForStory = getContributionsForStory;
 
 /// Properties
 
@@ -189,7 +207,7 @@ exports.getAllProperties = getAllProperties;
  */
 
 
-const addStory = function(story) {
+const addStory = function (story) {
   return pool
     .query(
       `INSERT INTO stories (creator_id, title)
@@ -206,7 +224,7 @@ const addStory = function(story) {
 exports.addStory = addStory;
 
 
-const addContribution = function(contribution) {
+const addContribution = function (contribution) {
   return pool
     .query(
       `INSERT INTO contributions (user_id, story_id, content)
@@ -227,7 +245,7 @@ exports.addContribution = addContribution;
 //attach contribution to story
 
 //count votes per contribution
-const getVoteCount = function(contribution_id) {
+const getVoteCount = function (contribution_id) {
   return pool
     .query(`
     SELECT c.id, count(v.id)

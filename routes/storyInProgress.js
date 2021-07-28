@@ -5,22 +5,21 @@ const database = require("./database");
 module.exports = (db) => {
 
   // GET request to view storyteller page
-  router.get("/", async(req, res) => {
+  router.get("/", async (req, res) => {
     const stories = await database.getAllStories();
     console.log(stories);
-    res.render("storyInProgress", {stories: stories
-      });
+    res.render("storyInProgress", { stories: stories });
+  });
+  // POST request to create NEW STORY
+  router.post("/", (req, res) => {
   });
 
   router.post("/", (req, res) => {
+    console.log('reqbody:', req.body);
     const content = req.body.content;
-    const storyId = req.body.storyId;
+    const storyId = req.body.story_id;
     const userId = req.session.userId;
-    const contribution = {
-      userId,
-      storyId,
-      content
-    };
+    const contribution = { userId, storyId, content };
 
     database.addContribution(contribution)
       .then((contribution) => {
@@ -55,3 +54,28 @@ module.exports = (db) => {
   */
   return router;
 };
+
+for (let content in contributions) {
+  <% contents[content]. %>
+
+    contributions[contribution].content;
+
+  console.log('contributor', contributor);
+  console.log('contributors', contributors);
+  console.log('stories', stories);
+
+  // let status = '';
+  // if (contributor !== null) {
+  //   return status === accepted;
+  // }
+};
+
+// contributors === creators_id
+// returns
+// contributor = index
+
+// for (let contributors in stories) {
+  // for (let contribution in contributions) {
+
+  // }
+// };
