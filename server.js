@@ -80,9 +80,7 @@ app.get("/", (req, res) => {
 //   res.render("error");
 // });
 
-app.get("/completedStory", (req, res) => {
-  res.render("completedStory");
-});
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

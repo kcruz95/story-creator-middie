@@ -68,11 +68,11 @@
           <%= stories[story].title %></option>
         <% } %>
       </select>
-      <form method="GET" action="/stories/<%= story %>">
+      <textarea name="content" class="teller-input"
+      placeholder="What happened next?"></textarea>
         <button class="teller-template" type='submit'>
           Submit
         </button>
-      </form>
 
 
 
@@ -81,4 +81,3 @@
 </body>
 
 </html>
-
