@@ -1,15 +1,14 @@
 const express = require("express");
+const { Pool } = require("pg");
 const router = express.Router();
 const database = require("./database");
 
 module.exports = (db) => {
-
   // GET request to view storyteller page
-  router.get("/", async(req, res) => {
+  router.get("/", async (req, res) => {
     const stories = await database.getAllStories();
     console.log(stories);
-    res.render("storyInProgress", {stories: stories
-      });
+    res.render("storyInProgress", { stories: stories });
   });
 
   router.post("/", (req, res) => {
@@ -19,14 +18,28 @@ module.exports = (db) => {
     const contribution = {
       userId,
       storyId,
-      content
+      content,
     };
 
-    database.addContribution(contribution)
-      .then((contribution) => {
-        res.redirect("storyInProgress");
-      });
+    database.addContribution(contribution).then((contribution) => {
+      res.redirect("storyInProgress");
+    });
   });
+
+  // creator of story can accept a contribution;
+  //this merges it to the rest of the story
+
+  // accept contribution and merge it on to the story
+  router.post("/accept", (req, res) => {
+    const contributionid = req.body.contributionsid;
+    return pool.query(
+      `UPDATE contributions set status = "accepted" where id = ${contributionid}`
+    );
+     res.redirect("/storyInProgress");
+  });
+
+
+
   /*
   ADD STORY
   story teller route:
