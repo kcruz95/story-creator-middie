@@ -91,11 +91,15 @@ exports.addUser = addUser;
  */
 
 
+<<<<<<< HEAD
 const getAllStories = function (creator_id = null, limit = 10) {
+=======
+const getAllStories = function(creatorId = null, limit = 10) {
+>>>>>>> 3d934b8d61088823da8c3c3b445fd76f809ed39d
   return pool
     .query(`SELECT *
             FROM stories s
-            JOIN users u ON s.creator_id = u.id
+            JOIN users u ON s.creatorId = u.id
             `,)
     .then((result) => {
       return result.rows;
@@ -115,12 +119,16 @@ exports.getAllStories = getAllStories;
  */
 
 
+<<<<<<< HEAD
 const getAllContributions = function (user_id, limit = 10) {
+=======
+const getAllContributions = function(userId, limit = 10) {
+>>>>>>> 3d934b8d61088823da8c3c3b445fd76f809ed39d
   return pool
     .query(`SELECT *
             FROM contributions c
-            JOIN users u ON c.user_id = u.id
-            WHERE c.user_id = $1 LIMIT $2`, [user_id, limit])
+            JOIN users u ON c.userId = u.id
+            WHERE c.userId = $1 LIMIT $2`, [userId, limit])
     .then((result) => {
       return result.rows;
     })
@@ -130,6 +138,7 @@ const getAllContributions = function (user_id, limit = 10) {
 };
 exports.getAllContributions = getAllContributions;
 
+<<<<<<< HEAD
 const getContributionsForStory = function (user_id, story_id, limit = 10) {
   return pool
     .query(`SELECT *
@@ -139,6 +148,17 @@ const getContributionsForStory = function (user_id, story_id, limit = 10) {
             WHERE c.user_id = $1
             AND c.story_id = $2
             LIMIT $2`, [user_id, story_id, limit])
+=======
+const getContributionsForStory = function(userId, storyId, limit = 10) {
+  return pool
+    .query(`SELECT *
+            FROM contributions c
+            JOIN users u ON c.userId = u.id
+            JOIN stories s ON c.storyId = s.id
+            WHERE c.userId = $1
+            AND c.storyId = $2
+            LIMIT $3`, [userId, storyId, limit])
+>>>>>>> 3d934b8d61088823da8c3c3b445fd76f809ed39d
     .then((result) => {
       return result.rows;
     })
@@ -158,20 +178,20 @@ exports.getContributionsForStory = getContributionsForStory;
  */
 
 /*
-const getContributionsForStory = function(story_id, limit = 20) { //should there be a limit
+const getContributionsForStory = function(storyId, limit = 20) { //should there be a limit
   // 1
   const queryParams = [];
   // 2
   let queryString = `
   SELECT s.id, c.*
   FROM stories s
-  JOIN contributions c ON s.id = c.story_id
+  JOIN contributions c ON s.id = c.storyId
   WHERE s.id = $1
   GROUP BY s.id
   ORDER BY c.sequence
   `;
   // 3
-  if (options.contribution_id) {
+  if (options.contributionId) {
     queryParams.push(`${options.content}`);
     queryString += `AND city LIKE $${queryParams.length} `;
   }
@@ -210,9 +230,9 @@ exports.getAllProperties = getAllProperties;
 const addStory = function (story) {
   return pool
     .query(
-      `INSERT INTO stories (creator_id, title)
+      `INSERT INTO stories (creatorId, title)
       VALUES ($1, $2)
-      RETURNING *`, [story.creator_id, story.title])
+      RETURNING *`, [story.creatorId, story.title])
     .then((result) => {
       return result.rows[0];
     })
@@ -227,7 +247,7 @@ exports.addStory = addStory;
 const addContribution = function (contribution) {
   return pool
     .query(
-      `INSERT INTO contributions (user_id, story_id, content)
+      `INSERT INTO contributions (userId, storyId, content)
       VALUES ($1, $2, $3)
       RETURNING *`, [contribution.userId, contribution.storyId, contribution.content])
     .then((result) => {
@@ -245,14 +265,18 @@ exports.addContribution = addContribution;
 //attach contribution to story
 
 //count votes per contribution
+<<<<<<< HEAD
 const getVoteCount = function (contribution_id) {
+=======
+const getVoteCount = function(contributionId) {
+>>>>>>> 3d934b8d61088823da8c3c3b445fd76f809ed39d
   return pool
     .query(`
     SELECT c.id, count(v.id)
     FROM contributions c
-    LEFT JOIN votes v ON c.id = v.contribution_id
+    LEFT JOIN votes v ON c.id = v.contributionId
     WHERE c.id = $1
-    GROUP BY c.id`, [contribution_id])
+    GROUP BY c.id`, [contributionId])
     .then((result) => {
       return result.rows;
     })
@@ -261,3 +285,27 @@ const getVoteCount = function (contribution_id) {
     });
 };
 exports.getVoteCount = getVoteCount;
+
+
+const updateContribution = function(contributionId) {
+  return pool
+    .query(`
+    UPDATE contributions
+    SET status = 'accepted'
+    FROM contributions c
+    JOIN stories s ON c.storyId = s.id
+    WHERE id = $1;
+
+    UPDATE contributions
+    SET status = 'denied'
+    FROM contributions c
+    JOIN stories s ON c.storyId = s.id
+    WHERE id <> $1`, [contributionId])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+exports.updateContribution = updateContribution;

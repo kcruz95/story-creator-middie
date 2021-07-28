@@ -10,19 +10,19 @@ VALUES
 -- (2,'title2'),
 -- (3,'title3');
 
-INSERT INTO stories (creator_id, title, is_completed)
+INSERT INTO stories (creatorId, title, isCompleted)
 VALUES
 (1,'title1', true),
 (2,'title2', false),
 (3,'title3', false);
 
-INSERT INTO contributions (user_id, story_id, content)
+INSERT INTO contributions (userId, storyId, content)
 VALUES
 (1, 1, 'content1'),
 (2, 2, 'content2'),
 (3, 3, 'content3');
 
-INSERT INTO votes (contribution_id, user_id)
+INSERT INTO votes (contributionId, userId)
 VALUES
 (2,2),
 (2,3);
