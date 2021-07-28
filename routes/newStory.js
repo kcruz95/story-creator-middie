@@ -22,11 +22,33 @@ module.exports = (db) => {
     database.addStory(story)
       .then((story) => {
         res.redirect("storyInProgress");
+<<<<<<< HEAD
+      });
+  });
+  //   database.addStory(story)
+  //     .then((story) => {
+  //       res.redirect("storyInProgress");
+  //     });
+=======
       })
 
   })
+>>>>>>> master
+
+  // })
 
 
-
+  // POST request to create NEW STORY
+  router.post('/stories', (req, res) => {
+    const userId = req.session.userId;
+    database.addStory({...req.body, userId})
+      .then(story => {
+        res.send(story);
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e);
+      });
+  });
   return router;
 };
