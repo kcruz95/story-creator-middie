@@ -303,33 +303,25 @@ const getVoteCount = function (contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-const updateContributions = function(contributionId) {
-  const sql1 = `UPDATE contributions SET status = 'accepted' WHERE id = $1 RETURNING *`;
-  const sql2 = `UPDATE contributions SET status = 'rejected' WHERE id <> $1 AND storyid = $2`;
+// const updateContributions = function(contributionId) {
+//   const sql1 = `UPDATE contributions SET status = 'accepted' WHERE id = $1 RETURNING *`;
+//   const sql2 = `UPDATE contributions SET status = 'rejected' WHERE id <> $1 AND storyid = $2`;
 
-<<<<<<< HEAD
-    UPDATE contributions
-    SET status = 'rejected'
-    FROM contributions c
-    JOIN stories s ON c.storyId = s.id
-    WHERE id <> $1`, [contributionId])
-=======
-  return pool
-    .query(sql1, [contributionId])
->>>>>>> 9c13ebe96081f75fc4d043c5cbfd0e94aea4ca16
-    .then((result) => {
+//   return pool
+//   .query(sql1, [contributionId])
+//     .then((result) => {
 
-      const record = result.rows[0];
-      console.log('record:',record);
-      console.log('[contributionId, record.storyId]:',[contributionId, record.storyid]);
-      return pool.query(sql2, [contributionId, record.storyid]);
+//       const record = result.rows[0];
+//       console.log('record:',record);
+//       console.log('[contributionId, record.storyId]:',[contributionId, record.storyid]);
+//       return pool.query(sql2, [contributionId, record.storyid]);
 
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
-};
-exports.updateContributions = updateContributions;
+//     })
+//     .catch((err) => {
+//       console.error(err.message);
+//     });
+// };
+// exports.updateContributions = updateContributions;
 
 
 const updateStoryToComplete = function (storyId) {
