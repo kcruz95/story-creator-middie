@@ -43,7 +43,7 @@ const getCompletedStories = function(creatorId = null, limit = 10) {
             WHERE isCompleted = true
             `,)
     .then((result) => {
-      console.log('resultCompletedStories:', result);
+
       return result.rows;
     })
     .catch((err) => {
@@ -116,7 +116,6 @@ const getAllStories = function (creatorId = null, limit = 10) {
             JOIN users u ON s.creatorId = u.id
             `,)
     .then((result) => {
-      console.log('resultASDF:', result);
       return result.rows;
     })
     .catch((err) => {
@@ -126,14 +125,14 @@ const getAllStories = function (creatorId = null, limit = 10) {
 exports.getAllStories = getAllStories;
 
 const getStoryById = function (id) {
-  console.log('id:', id);
+
   return pool
     .query(`SELECT *
             FROM stories s
             WHERE s.id = $1
             `, [id])
     .then((result) => {
-      // console.log('result.rows:', result.rows);
+
       return result.rows[0];
     })
     .catch((err) => {
@@ -326,3 +325,18 @@ const updateContributions = function (contributionId) {
     });
 };
 exports.updateContributions = updateContributions;
+
+const updateStoryToComplete = function (storyId) {
+  return pool
+  .query(`
+  UPDATE stories
+  SET isCompleted = TRUE
+  WHERE id = $1`, [storyId])
+  .then((result) => {
+    return result.rows;
+  })
+  .catch((err) => {
+    console.error(err.message);
+  });
+}
+exports.updateStoryToComplete = updateStoryToComplete;

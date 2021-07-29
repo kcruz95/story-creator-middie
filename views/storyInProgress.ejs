@@ -80,10 +80,15 @@
       <a href=<%=`/storyInProgress/${stories[story].id}` %>>
         <%= stories[story].title %>
       </a>
-      <% if (stories[story].iscompleted===true) {%>
-        <span>completed</span>
+      <% if (stories[story].iscompleted === true) {%>
+        <span>status: completed</span>
         <% } else {%>
-          <span>incomplete</span>
+          <span>status: incomplete</span>
+          <% if (stories[story].creatorid === userId) {%>
+            <form action="/storyInProgress/<%= stories[story].id %>" method="POST">
+              <button type='submit'>change to complete</button>
+            </form>
+          <% } %>
           <% } %>
             <% } %>
 

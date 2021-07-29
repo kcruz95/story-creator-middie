@@ -8,7 +8,12 @@ module.exports = (db) => {
   router.get("/", async (req, res) => {
     const stories = await database.getAllStories();
 
-    res.render("storyInProgress", { stories: stories });
+    templateVars = {
+      stories: stories,
+      userId: req.session.userId
+    }
+
+    res.render("storyInProgress", templateVars);
   });
 
   router.post("/", (req, res) => {
@@ -31,20 +36,12 @@ module.exports = (db) => {
   });
 
 
-  // accept contribution and merge it on to the story
-  router.post("/:id/complete", (req, res) => {
-    // const contributionId = req.body.contributionsId;
-    const storyId = req.params.storyId;
-    const title = req.body.title;
-    const userId = req.session.userId;
-    const stories = {
-      userId,
-      storyId,
-      title
-    };
-    console.log('postAcceptReq:', req);
-    database.updateStoryToComplete(stories).then((stories) => {
-      res.redirect("completedStory");
+  // post route to change status to complete
+  router.post("/:id", (req, res) => {
+    const storyId = req.params.id;
+
+    database.updateStoryToComplete(storyId).then(() => {
+      res.redirect("/storyInProgress");
     });
   });
 
