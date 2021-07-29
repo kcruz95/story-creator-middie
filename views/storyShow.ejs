@@ -60,8 +60,9 @@
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
     <h1>Title: <%= story.title %> </h1>
-
+    <% if (story.iscompleted === false) {%>
     <h3>accepted </h3>
+    <% } %>
     <% for(let contribution in contributions) { %>
       <div><%= contributions[contribution].content %></div>
     <% } %>
@@ -71,11 +72,12 @@
 </form>
 
 
-
+<% if (story.iscompleted === false) {%>
 <h3>pending </h3>
         <% for(let contribution in contributions) { %>
           <div><%= contributions[contribution].content %></div>
         <% } %>
+
         <form method="post" action="/storyShow" value="">
       <textarea name="content" class="teller-input"
       placeholder="What happened next?"></textarea>
@@ -84,6 +86,7 @@
       <button type= "submit">
         submit
       </button>
+      <% } %>
 
     </form>
 

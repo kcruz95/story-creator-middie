@@ -53,7 +53,7 @@ const newStory = require("./routes/newStory");
 const storyInProgress = require("./routes/storyInProgress");
 const storyShow = require("./routes/storyShow");
 const completedStory = require("./routes/completedStory");
-const home = require("./routes/home");
+
 
 
 // Mount all resource routes
@@ -66,7 +66,7 @@ app.use("/newStory", newStory(db));
 app.use("/storyInProgress", storyInProgress(db));
 app.use("/storyShow", storyShow(db));
 app.use("/completedStory", completedStory(db));
-app.use("/home", home(db));
+
 // Note: mount other resources here, using the same pattern above
 
 
