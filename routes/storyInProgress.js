@@ -30,5 +30,24 @@ module.exports = (db) => {
     return res.render("storyShow", templateVars);
   });
 
+
+  // accept contribution and merge it on to the story
+  router.post("/:id/complete", (req, res) => {
+    // const contributionId = req.body.contributionsId;
+    const storyId = req.params.storyId;
+    const title = req.body.title;
+    const userId = req.session.userId;
+    const stories = {
+      userId,
+      storyId,
+      title
+    };
+    console.log('postAcceptReq:', req);
+    database.updateStoryToComplete(stories).then((stories) => {
+      res.redirect("completedStory");
+    });
+  });
+
+
   return router;
 };
