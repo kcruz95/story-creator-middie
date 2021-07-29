@@ -109,7 +109,7 @@ exports.addUser = addUser;
  */
 
 
-const getAllStories = function (creatorId = null, limit = 10) {
+const getAllStories = function(creatorId = null, limit = 10) {
   return pool
     .query(`SELECT s.*
             FROM stories s
@@ -155,7 +155,7 @@ const getAllContributions = function (userId, limit = 10) {
     .query(`SELECT *
             FROM contributions c
             JOIN users u ON c.userId = u.id`
-            /*WHERE c.userId = $1 LIMIT $2`, [userId, limit]*/)
+    /*WHERE c.userId = $1 LIMIT $2`, [userId, limit]*/)
     .then((result) => {
       return result.rows;
     })
@@ -166,14 +166,14 @@ const getAllContributions = function (userId, limit = 10) {
 exports.getAllContributions = getAllContributions;
 
 // const getContributionsForStory = function(userId, storyId, limit = 10) {
-const getContributionsForStory = function (storyId) {
+const getContributionsForStory = function(storyId) {
   return pool
     .query(`SELECT *
             FROM contributions c
             JOIN stories s ON c.storyId = s.id
             WHERE c.storyId = $1`, [storyId]
 
-            /*LIMIT $3`, [userId, storyId, limit]*/)
+    /*LIMIT $3`, [userId, storyId, limit]*/)
     .then((result) => {
       //console.log()
       return result.rows;
@@ -247,7 +247,7 @@ exports.getAllProperties = getAllProperties;
  */
 
 
-const addStory = function (story) {
+const addStory = function(story) {
   return pool
     .query(
       `INSERT INTO stories (creatorId, title)
@@ -264,7 +264,7 @@ const addStory = function (story) {
 exports.addStory = addStory;
 
 
-const addContribution = function (contribution) {
+const addContribution = function(contribution) {
   return pool
     .query(
       `INSERT INTO contributions (userId, storyId, content)
@@ -303,22 +303,27 @@ const getVoteCount = function (contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-const updateContributions = function (contributionId) {
-  return pool
-    .query(`
-    UPDATE contributions
-    SET status = 'accepted'
-    FROM contributions c
-    JOIN stories s ON c.storyId = s.id
-    WHERE id = $1;
+const updateContributions = function(contributionId) {
+  const sql1 = `UPDATE contributions SET status = 'accepted' WHERE id = $1 RETURNING *`;
+  const sql2 = `UPDATE contributions SET status = 'rejected' WHERE id <> $1 AND storyid = $2`;
 
+<<<<<<< HEAD
     UPDATE contributions
     SET status = 'rejected'
     FROM contributions c
     JOIN stories s ON c.storyId = s.id
     WHERE id <> $1`, [contributionId])
+=======
+  return pool
+    .query(sql1, [contributionId])
+>>>>>>> 9c13ebe96081f75fc4d043c5cbfd0e94aea4ca16
     .then((result) => {
-      return result.rows;
+
+      const record = result.rows[0];
+      console.log('record:',record);
+      console.log('[contributionId, record.storyId]:',[contributionId, record.storyid]);
+      return pool.query(sql2, [contributionId, record.storyid]);
+
     })
     .catch((err) => {
       console.error(err.message);
@@ -326,17 +331,19 @@ const updateContributions = function (contributionId) {
 };
 exports.updateContributions = updateContributions;
 
+
 const updateStoryToComplete = function (storyId) {
   return pool
-  .query(`
-  UPDATE stories
-  SET isCompleted = TRUE
-  WHERE id = $1`, [storyId])
-  .then((result) => {
-    return result.rows;
-  })
-  .catch((err) => {
-    console.error(err.message);
-  });
-}
+    .query(`
+    UPDATE stories
+    SET isCompleted = TRUE
+    WHERE id = $1`, [storyId])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+
 exports.updateStoryToComplete = updateStoryToComplete;
