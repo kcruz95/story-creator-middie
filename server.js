@@ -59,6 +59,7 @@ const storyShow = require("./routes/storyShow");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginRoutes(db));
+app.use("/error", loginRoutes(db));
 app.use("/newStory", newStory(db));
 app.use("/storyInProgress", storyInProgress(db));
 app.use("/storyShow", storyShow(db));

@@ -19,7 +19,7 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/storyInProgress.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/contributions.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -61,6 +61,21 @@
   <div id="teller-buttons">
     <h3>Title: <%= story.title %> </h3>
 
+<<<<<<< HEAD:views/contributions.ejs
+    <form class="form-inline" action="/storyInProgress" method="POST">
+
+      <select name="storyId" id="storyId" multiple>
+        <% for(let story in stories) { %>
+          <option value=<%=stories[story].id %>>
+            <%= stories[story].title %>
+          </option>
+          <% } %>
+      </select>
+      <textarea name="content" class="teller-input" placeholder="What happened next?"></textarea>
+      <button class="teller-template" type='submit'>
+        Submit
+      </button>
+=======
         <% for(let contribution in contributions) { %>
           <span><%= contributions[contribution].content %></span>
         <% } %>
@@ -75,6 +90,7 @@
 
     </form>
 
+>>>>>>> 188e7953cfa81a76a0489cfed5829ff54f206a89:views/storyShow.ejs
 
 
 

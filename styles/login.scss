@@ -74,11 +74,17 @@ a {
 // }
 
 .login-credens {
-  color: bisque;
+  // align-items: center;
+  background-color: bisque;
+  border: none;
+  border-radius: 29px;box-sizing: content-box;
+  // color: bisque;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 28em;
+  padding: 20px;
+  width: 20%;
 }
 
 .login-login {
@@ -95,8 +101,4 @@ a {
   font-size: 32px;font-size: 32px;
   margin-top: 0.5em;
   margin-bottom: 0em;
-}
-
-.arrow {
-  color: maroon;
 }

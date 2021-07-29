@@ -5,7 +5,7 @@ const database = require("./database");
 
 module.exports = (db) => {
 
-// GET request to view storyteller page
+  // GET request to view storyteller page
   router.get("/", async (req, res) => {
 
     const stories = await database.getAllStories();
@@ -13,7 +13,7 @@ module.exports = (db) => {
     res.render("storyInProgress", { stories: stories });
   });
 
-  router.post("/", (req, res)=>{
+  router.post("/", (req, res) => {
     const storyId = req.body.storyId;
 
     //database query
@@ -29,7 +29,7 @@ module.exports = (db) => {
 
 
     // const templateVars = { shortURL: urlID, longURL: urlDatabase[req.params.shortURL].longURL, user};
-    const templateVars = { contributions, story};
+    const templateVars = { contributions, story };
 
     return res.render("storyShow", templateVars);
   })

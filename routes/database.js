@@ -91,14 +91,14 @@ exports.addUser = addUser;
  */
 
 
-const getAllStories = function(creatorId = null, limit = 10) {
+const getAllStories = function (creatorId = null, limit = 10) {
   return pool
     .query(`SELECT s.*
             FROM stories s
             JOIN users u ON s.creatorId = u.id
             `,)
     .then((result) => {
-      console.log('resultASDF:',result);
+      console.log('resultASDF:', result);
       return result.rows;
     })
     .catch((err) => {
@@ -107,13 +107,13 @@ const getAllStories = function(creatorId = null, limit = 10) {
 };
 exports.getAllStories = getAllStories;
 
-const getStoryById = function(id) {
+const getStoryById = function (id) {
   console.log('id:', id);
   return pool
     .query(`SELECT *
             FROM stories s
             WHERE s.id = $1
-            `,[id])
+            `, [id])
     .then((result) => {
       console.log('result.rows:', result.rows);
       return result.rows[0];
@@ -133,7 +133,7 @@ exports.getStoryById = getStoryById;
  */
 
 
-const getAllContributions = function(userId, limit = 10) {
+const getAllContributions = function (userId, limit = 10) {
   return pool
     .query(`SELECT *
             FROM contributions c
@@ -149,7 +149,7 @@ const getAllContributions = function(userId, limit = 10) {
 exports.getAllContributions = getAllContributions;
 
 // const getContributionsForStory = function(userId, storyId, limit = 10) {
-const getContributionsForStory = function(storyId) {
+const getContributionsForStory = function (storyId) {
   return pool
     .query(`SELECT *
             FROM contributions c
@@ -230,7 +230,7 @@ exports.getAllProperties = getAllProperties;
  */
 
 
-const addStory = function(story) {
+const addStory = function (story) {
   return pool
     .query(
       `INSERT INTO stories (creatorId, title)
@@ -247,7 +247,7 @@ const addStory = function(story) {
 exports.addStory = addStory;
 
 
-const addContribution = function(contribution) {
+const addContribution = function (contribution) {
   return pool
     .query(
       `INSERT INTO contributions (userId, storyId, content)
@@ -268,7 +268,7 @@ exports.addContribution = addContribution;
 //attach contribution to story
 
 //count votes per contribution
-const getVoteCount = function(contributionId) {
+const getVoteCount = function (contributionId) {
   return pool
     .query(`
     SELECT c.id, count(v.id)
@@ -286,7 +286,7 @@ const getVoteCount = function(contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-const updateContributions = function(contributionId) {
+const updateContributions = function (contributionId) {
   return pool
     .query(`
     UPDATE contributions
