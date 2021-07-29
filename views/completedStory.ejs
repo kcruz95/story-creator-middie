@@ -71,7 +71,19 @@
         ${story_template2}
       </button>
     </a>
-  </div>
+
+
+
+  <% for(let story in stories) { %>
+    <h1><%= stories[story].title %></h1>
+    <% } %>
+
+    <% for(let contribution in contributions) { %>
+      <div><%= contributions[contribution].content %></div>
+    <% } %>
+
+
+
 </body>
 
 </html>
