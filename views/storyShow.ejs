@@ -57,37 +57,52 @@
   <!-- also write to make ifCompleted === true -->
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
-    <h3>
-      <%= story.title %>
-    </h3>
 
-    <% for(let contribution in contributions) { %>
-      <span>
-        <%= contributions[contribution].content %>
-      </span>
+
+    <h1>Title: <%= story.title %>
+    </h1>
+    <% if (story.iscompleted===false) {%>
+      <h3>accepted </h3>
       <% } %>
-        <form method="post" action="/storyShow" value="">
-          <textarea name="content" class="teller-input" placeholder="What happened next?"></textarea>
-          <input type="text" name="storyId" value="<%= story.id %>" style="display:none">
-
-          <div id="show-maker-buttons">
-            <button type="submit">
-              <img src="/img icons/heart.png" alt="heart-icon">
-            </button>
-
-            <button type="submit">
-              edit name
-            </button>
-
-            <button type="submit">
-              post/finish
-            </button>
-
-            <button type="submit">
-              clear/delete
-            </button>
+        <% for(let contribution in contributions) { %>
+          <div>
+            <%= contributions[contribution].content %>
           </div>
-        </form>
+          <% } %>
+            <form method="post" action="/storyShow" value="">
+              <input type="text" name="storyId" value="<%= story.id %>" style="display:none">
+            </form>
+
+            <% if (story.iscompleted===false) {%>
+              <h3>pending </h3>
+              <% for(let contribution in contributions) { %>
+                <div>
+                  <%= contributions[contribution].content %>
+                </div>
+                <% } %>
+
+                  <form method="post" action="/storyShow" value="">
+                    <textarea name="content" class="teller-input" placeholder="What happened next?"></textarea>
+                    <input type="text" name="storyId" value="<%= story.id %>" style="display:none">
+
+                    <div id="show-maker-buttons">
+                      <button type="submit">
+                        <img src="/img icons/heart.png" alt="heart-icon">
+                      </button>
+
+                      <button type="submit">
+                        edit name
+                      </button>
+
+                      <button type="submit">
+                        post/finish
+                      </button>
+
+                      <button type="submit">
+                        clear/delete
+                      </button>
+                    </div>
+                  </form>
   </div>
 </body>
 

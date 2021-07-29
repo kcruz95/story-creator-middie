@@ -63,39 +63,43 @@
 
   <div class="progress-title-container">
     <span class="progress-title">
-      story titles
+      sum story titles
+    </span>
+
+    <span id="progress-blurb">
+      ...maybe a story will cheer you up!
     </span>
   </div>
 
-  <!-- write to make sure ifCompleted === false in order for title(teller-display) && teller-input to show up -->
-  <!-- also write to make ifCompleted === true -->
   <!-- title inputbox is in story -->
-  <div id="progress-storymaker">
+  <div id="progress-storymaker-box">
+    <div id="progress-storymaker">
 
-    <!-- form tag starts here-->
-    <!-- select option control -->
+      <!-- form tag starts here-->
+      <!-- select option control -->
 
-    <% for(let story in stories) { %>
-      <a href=<%=`/storyInProgress/${stories[story].id}` %>>
-        <%= stories[story].title %>
-      </a>
-      <% if (stories[story].iscompleted===true) {%>
-        <span>completed</span>
-        <% } else {%>
-          <span>incomplete</span>
-          <% } %>
+      <% for(let story in stories) { %>
+
+        <a href=<%=`/storyInProgress/${stories[story].id}` %>>
+          <%= stories[story].title %>
+        </a>
+        <% if (stories[story].iscompleted===true) {%>
+          <span>completed</span>
+          <% } else {%>
+            <span>incomplete</span>
             <% } %>
+              <% } %>
 
-              <!-- Form tag closes here-->
+                <!-- Form tag closes here-->
 
-              <div id="progress-buttons">
-                <a href="">
-                  <button class="progress-delete">
-                    delete a title
-                  </button>
-                </a>
-              </div>
-
+                <div id="progress-buttons">
+                  <a href="">
+                    <button class="progress-delete">
+                      delete a title
+                    </button>
+                  </a>
+                </div>
+    </div>
   </div>
 
 </body>

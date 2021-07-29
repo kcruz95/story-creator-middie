@@ -52,6 +52,8 @@ const loginRoutes = require("./routes/login");
 const newStory = require("./routes/newStory");
 const storyInProgress = require("./routes/storyInProgress");
 const storyShow = require("./routes/storyShow");
+const completedStory = require("./routes/completedStory");
+
 
 
 // Mount all resource routes
@@ -63,6 +65,8 @@ app.use("/error", loginRoutes(db));
 app.use("/newStory", newStory(db));
 app.use("/storyInProgress", storyInProgress(db));
 app.use("/storyShow", storyShow(db));
+app.use("/completedStory", completedStory(db));
+
 // Note: mount other resources here, using the same pattern above
 
 
@@ -77,12 +81,6 @@ app.get("/", (req, res) => {
 
 //   res.render("login");
 // });
-
-app.get("/completedStory", (req, res) => {
-  res.render("completedStory");
-});
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
