@@ -107,6 +107,40 @@ const getAllStories = function (creatorId = null, limit = 10) {
 };
 exports.getAllStories = getAllStories;
 
+const getCompletedStories = function(creatorId = null, limit = 10) {
+  return pool
+    .query(`SELECT s.*
+            FROM stories s
+            JOIN users u ON s.creatorId = u.id
+            WHERE isCompleted = true
+            `,)
+    .then((result) => {
+      console.log('resultCompletedStories:', result);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+exports.getCompletedStories = getCompletedStories;
+
+const getCurrentStories = function(creatorId = null, limit = 10) {
+  return pool
+    .query(`SELECT s.*
+            FROM stories s
+            JOIN users u ON s.creatorId = u.id
+            WHERE isCompleted = true
+            `,)
+    .then((result) => {
+      console.log('resultCurrentStories:', result);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+exports.getCurrentStories = getCurrentStories;
+
 const getStoryById = function (id) {
   console.log('id:', id);
   return pool
@@ -133,12 +167,12 @@ exports.getStoryById = getStoryById;
  */
 
 
-const getAllContributions = function (userId, limit = 10) {
+const getAllContributions = function(userId, limit = 10) {
   return pool
     .query(`SELECT *
             FROM contributions c
             JOIN users u ON c.userId = u.id`
-            /*WHERE c.userId = $1 LIMIT $2`, [userId, limit]*/)
+      /*WHERE c.userId = $1 LIMIT $2`, [userId, limit]*/)
     .then((result) => {
       return result.rows;
     })
@@ -156,7 +190,7 @@ const getContributionsForStory = function (storyId) {
             JOIN stories s ON c.storyId = s.id
             WHERE c.storyId = $1`, [storyId]
 
-            /*LIMIT $3`, [userId, storyId, limit]*/)
+      /*LIMIT $3`, [userId, storyId, limit]*/)
     .then((result) => {
       //console.log()
       return result.rows;
@@ -230,7 +264,7 @@ exports.getAllProperties = getAllProperties;
  */
 
 
-const addStory = function (story) {
+const addStory = function(story) {
   return pool
     .query(
       `INSERT INTO stories (creatorId, title)
@@ -247,7 +281,7 @@ const addStory = function (story) {
 exports.addStory = addStory;
 
 
-const addContribution = function (contribution) {
+const addContribution = function(contribution) {
   return pool
     .query(
       `INSERT INTO contributions (userId, storyId, content)
@@ -268,14 +302,14 @@ exports.addContribution = addContribution;
 //attach contribution to story
 
 //count votes per contribution
-const getVoteCount = function (contributionId) {
+const getVoteCount = function(contributionId) {
   return pool
     .query(`
-    SELECT c.id, count(v.id)
+    SELECT c.id, c.content, c.status, count(v.id) AS numOfVotes
     FROM contributions c
     LEFT JOIN votes v ON c.id = v.contributionId
     WHERE c.id = $1
-    GROUP BY c.id`, [contributionId])
+    GROUP BY c.id, c.content, c.status`, [contributionId])
     .then((result) => {
       return result.rows;
     })
@@ -286,20 +320,35 @@ const getVoteCount = function (contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-const updateContributions = function (contributionId) {
+const updateStoryToComplete = function(storyId) {
+  return pool
+    .query(`
+    UPDATE stories
+    SET isCompleted = true
+    WHERE id = $1`, [storyId])
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+exports.updateStoryToComplete = updateStoryToComplete;
+
+const updateContributions = function(contributionId) {
   return pool
     .query(`
     UPDATE contributions
     SET status = 'accepted'
     FROM contributions c
     JOIN stories s ON c.storyId = s.id
-    WHERE id = $1;
+    WHERE c.id = $1;
 
     UPDATE contributions
-    SET status = 'denied'
+    SET status = 'rejected'
     FROM contributions c
     JOIN stories s ON c.storyId = s.id
-    WHERE id <> $1`, [contributionId])
+    WHERE c.id <> $1`, [contributionId])
     .then((result) => {
       return result.rows;
     })
