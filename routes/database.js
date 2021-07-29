@@ -313,7 +313,7 @@ const updateContributions = function (contributionId) {
     WHERE id = $1;
 
     UPDATE contributions
-    SET status = 'denied'
+    SET status = 'rejected'
     FROM contributions c
     JOIN stories s ON c.storyId = s.id
     WHERE id <> $1`, [contributionId])

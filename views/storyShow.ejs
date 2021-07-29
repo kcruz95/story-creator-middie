@@ -58,25 +58,41 @@
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
 
- 
+
 
     <h1>Title: <%= story.title %> </h1>
-    <% if (story.iscompleted === false) {%>
+
+    <% if (story.iscompleted) {%>
+      <% for(let contribution in contributions) { %>
+        <div><%= contributions[contribution].content %></div>
+        <% } %>
+      <% } %>
+
+
+    <% if (!story.iscompleted) {%>
     <h3>accepted </h3>
-    <% } %>
+
     <% for(let contribution in contributions) { %>
+      <% if (contributions[contribution].status !== 'accepted') {%>
       <div><%= contributions[contribution].content %></div>
+      <% } %>
     <% } %>
-    <form method="post" action="/storyShow" value="">
-  <input  type="text" name="storyId"
-  value="<%= story.id %>" style="display:none">
-</form>
 
+    <h3>pending </h3>
 
-<% if (story.iscompleted === false) {%>
-<h3>pending </h3>
         <% for(let contribution in contributions) { %>
+         <% if (contributions[contribution].status === 'pending') {%>
           <div><%= contributions[contribution].content %></div>
+          <button type="submit">
+            <img src="/w6/story-creator-middie/img icons/heart.png" alt="heart-icon">
+          </button>
+
+
+          <button type="submit">
+            post/finish
+          </button>
+
+          <% } %>
         <% } %>
 
         <form method="post" action="/storyShow" value="">
@@ -84,18 +100,24 @@
       placeholder="What happened next?"></textarea>
       <input  type="text" name="storyId"
       value="<%= story.id %>" style="display:none">
+    </form>
+
+<div>creatorId <%= story.creatorid %> </div>
+<div>userId <%= userId %> </div>
+
+    <% if (story.creatorid === userId) {%>
+      <form action="" method= "POST">
       <button type= "submit">
         submit
       </button>
+    </form>
+        <% } %>
       <% } %>
 
 
-            <button type="submit">
-              <img src="/w6/story-creator-middie/img icons/heart.png" alt="heart-icon">
-            </button>
 
 
-            <button type="submit">
+            <!-- <button type="submit">
               edit name
             </button>
 
@@ -106,11 +128,12 @@
 
             <button type="submit">
               clear/delete
-            </button>
+            </button> -->
 
-          </div>
-        </form>
+
   </div>
+
+
 </body>
 
 </html>

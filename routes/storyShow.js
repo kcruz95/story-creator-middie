@@ -4,12 +4,26 @@ const router = express.Router();
 const database = require("./database");
 
 module.exports = (db) => {
-  // GET request to view storyteller page
-  router.get("/", async(req, res) => {
-    const stories = await database.getAllStories();
-    console.log(stories);
-    res.render("storyShow", { stories: stories });
+  // GET request to view storyShow page
+  // router.get("/", async(req, res) => {
+  //   const stories = await database.getAllStories();
+
+  //   res.render("storyShow", { stories: stories });
+  // });
+
+  router.get("/:id", async (req, res) => {
+    const contributions = await database.getContributionsForStory(req.params.id);
+    const story = await database.getAllStories();
+
+    templateVars = {
+      contributions: contributions,
+      story: story,
+      userId: req.session.userId
+    };
+
+    res.render("storyShow", templateVars);
   });
+
 
 
   //post request to add contribution
@@ -34,7 +48,7 @@ module.exports = (db) => {
   //this merges it to the rest of the story
 
   // accept contribution and merge it on to the story
-  router.post("/:id/accept", (req, res) => {
+  router.post("/:id", (req, res) => {
     // const contributionId = req.body.contributionsId;
     const contributionId = req.params.id;
     const content = req.body.content;
@@ -48,7 +62,7 @@ module.exports = (db) => {
     };
 
     database.updateContributions(contributions).then((contributions) => {
-      res.redirect("storyInProgress");
+      res.redirect("/storyInProgress");
     });
   });
   return router;
