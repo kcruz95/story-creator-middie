@@ -22,25 +22,19 @@ module.exports = (db) => {
       .then((story) => {
         res.redirect("storyInProgress");
       });
-
-
   });
-
-
-  // })
-
 
   // POST request to create NEW STORY
-  router.post('/stories', (req, res) => {
-    const userId = req.session.userId;
-    database.addStory({...req.body, userId})
-      .then(story => {
-        res.send(story);
-      })
-      .catch(e => {
-        console.error(e);
-        res.send(e);
-      });
-  });
+  // router.post('/stories', (req, res) => {
+  //   const userId = req.session.userId;
+  //   database.addStory({...req.body, userId})
+  //     .then(story => {
+  //       res.send(story);
+  //     })
+  //     .catch(e => {
+  //       console.error(e);
+  //       res.send(e);
+  //     });
+  // });
   return router;
 };

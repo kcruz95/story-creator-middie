@@ -8,9 +8,11 @@ module.exports = (db) => {
   router.get("/", async (req, res) => {
     const stories = await database.getAllStories();
     console.log(stories);
-    res.render("contributions", { stories: stories });
+    res.render("storyShow", { stories: stories });
   });
 
+
+  //post request to add contribution
   router.post("/", (req, res) => {
     const content = req.body.content;
     const storyId = req.body.storyId;
@@ -20,7 +22,7 @@ module.exports = (db) => {
       storyId,
       content,
     };
-
+    console.log('contributionREQ:', req);
     database.addContribution(contribution).then((contribution) => {
       res.redirect("storyInProgress");
     });
