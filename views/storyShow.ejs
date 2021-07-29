@@ -45,7 +45,7 @@
       <div>
         <a href="/storyInProgress">
           <button class="header-saved">
-            <img src="/w6/story-creator-middie/img icons/back.png" alt="back-icon">
+            <img src="/img icons/back.png" alt="back-icon">
           </button>
         </a>
       </div>
@@ -69,10 +69,10 @@
         <form method="post" action="/storyShow" value="">
           <textarea name="content" class="teller-input" placeholder="What happened next?"></textarea>
           <input type="text" name="storyId" value="<%= story.id %>" style="display:none">
-          <div>
 
+          <div id="show-maker-buttons">
             <button type="submit">
-              <img src="/w6/story-creator-middie/img icons/heart.png" alt="heart-icon">
+              <img src="/img icons/heart.png" alt="heart-icon">
             </button>
 
             <button type="submit">
@@ -86,7 +86,6 @@
             <button type="submit">
               clear/delete
             </button>
-
           </div>
         </form>
   </div>

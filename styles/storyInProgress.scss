@@ -79,17 +79,37 @@ button #progress-buttons {
   margin-top: 1em;
 }
 
-// .teller-display {
-//   background-color: bisque;
-//   border: 4px solid maroon;
-//   border-radius: 29px;
-//   color: maroon;
-//   font-size: 32px;
-//   font-family: 'Luckiest Guy';
-//   margin-top: 3em;
-//   padding: 1em;
-//   width: 100%;
-// }
+.progress-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: maroon;
+  font-size: 38px;
+  font-family: 'Luckiest Guy';
+  margin-top: 1em;
+}
+
+#progress-storymaker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: tan;
+  border: 4px solid maroon;
+  border-radius: 29px;
+  color: maroon;
+  font-size: 32px;
+  font-family: 'Luckiest Guy';
+  margin-top: 3em;
+}
+
+.teller-display {
+
+  margin-top: 3em;
+  padding: 1em;
+  width: 100%;
+}
 
 // .teller-input {
 //   background-color: bisque;
