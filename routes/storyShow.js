@@ -22,7 +22,7 @@ module.exports = (db) => {
       storyId,
       content,
     };
-    console.log('postContributionREQ:', req);
+
     database.addContribution(contribution).then((contribution) => {
       res.redirect("storyInProgress");
     });
@@ -46,7 +46,7 @@ module.exports = (db) => {
       storyId,
       content,
     };
-    console.log('postAcceptReq:', req);
+
     database.updateContributions(contributions).then((contributions) => {
       res.redirect("storyInProgress");
     });
