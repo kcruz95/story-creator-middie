@@ -9,7 +9,7 @@ module.exports = (db) => {
 
    router.get("/", async (req, res) => {
     const stories = await database.getCompletedStories();
-    console.log('complete:',stories);
+
     res.render("completedStory", { stories: stories });
   });
 

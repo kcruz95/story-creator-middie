@@ -69,12 +69,13 @@
 
       <a href=<%=`/storyInProgress/${stories[story].id}` %>>
         <%= stories[story].title %></a>
-        <% if (stories[story].iscompleted === true) {%>
-          <span>completed</span>
-        <% } else {%>
-          <span>in progress</span>
+            <% if (stories[story].iscompleted === true) {%>
+              <span>completed</span>
+            <% } else {%>
+              <span>in progress</span>
           <% } %>
-      <% } %>
+
+          <% } %>
 
         <!-- Form tag closes here-->
 
