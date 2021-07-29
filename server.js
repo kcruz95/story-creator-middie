@@ -78,9 +78,9 @@ app.get("/", (req, res) => {
 //   res.render("login");
 // });
 
-// app.get("/error", (req, res) => {
-//   res.render("error");
-// });
+app.get("/completedStory", (req, res) => {
+  res.render("completedStory");
+});
 
 
 
