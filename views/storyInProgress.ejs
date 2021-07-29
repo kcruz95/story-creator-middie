@@ -80,26 +80,31 @@
 
       <% for(let story in stories) { %>
 
-        <a href=<%=`/storyInProgress/${stories[story].id}` %>>
-          <%= stories[story].title %>
-        </a>
-        <% if (stories[story].iscompleted===true) {%>
-          <span>completed</span>
-          <% } else {%>
-            <span>incomplete</span>
+      <a href=<%=`/storyInProgress/${stories[story].id}` %>>
+        <%= stories[story].title %>
+      </a>
+      <% if (stories[story].iscompleted === true) {%>
+        <span>status: completed</span>
+        <% } else {%>
+          <span>status: incomplete</span>
+          <% if (stories[story].creatorid === userId) {%>
+            <form action="/storyInProgress/<%= stories[story].id %>" method="POST">
+              <button type='submit'>change to complete</button>
+            </form>
+          <% } %>
+          <% } %>
             <% } %>
-              <% } %>
 
-                <!-- Form tag closes here-->
+              <!-- Form tag closes here-->
 
-                <div id="progress-buttons">
-                  <a href="">
-                    <button class="progress-delete">
-                      delete a title
-                    </button>
-                  </a>
-                </div>
-    </div>
+              <!-- <div id="progress-buttons">
+                <a href="">
+                  <button class="progress-delete">
+                    delete a title
+                  </button>
+                </a>
+              </div> -->
+
   </div>
 
 </body>
