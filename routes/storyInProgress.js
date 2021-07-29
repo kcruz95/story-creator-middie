@@ -33,3 +33,53 @@ module.exports = (db) => {
   return router;
 };
 
+//       //   // GET request to edit URL with the right user
+// // app.get("/urls/:shortURL", (req, res) => {
+// //   const shortURL = req.params.shortURL;
+
+// //   // Return error if link is not found
+// //   if (!urlDatabase[shortURL]) {
+// //     return res.status(404).send("Url not found");
+// //   }
+// //   let currentUser = req.session["user_id"];
+// //   let userId = urlDatabase[req.params.shortURL].userID;
+// //   if (userId === currentUser) {
+// //     const templateVars = {
+// //       shortURL: req.params.shortURL,
+// //       longURL: urlDatabase[req.params.shortURL].longURL,
+// //       userID: urlDatabase[req.params.shortURL].userID,
+// //       user: getUser(users, req.session["user_id"]),
+// //     };
+// //     return res.render("urls_show", templateVars);
+// //   } else {
+// //     return res
+// //       .status(404)
+// //       .send("You are not authorized to perform this action");
+// //   }
+// // });
+
+//   /*
+//   ADD STORY
+//   story teller route:
+//   get back wat is typed into textbook for creating new story
+//   and adding into the database for contribution under user's account
+
+//   ADD CONTRIBUTION
+//   contribution to story route:
+//   user can contribute text to story in progress
+
+//   VIEW CURRENT CONTRIBUTION
+//   user can view current contribution but not accept them
+//   users can up vote contribution
+
+//   UP COUNT:
+//   when upvoted like values goes up
+
+//   ADD CONTRIBUTION TO STORY
+//   owner of story can accept contribution to story
+
+//   COMPLETE STORY
+//   OWNER of story can submit current story as completed
+//   and be viewed on completed story list
+
+//   */
