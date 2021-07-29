@@ -34,6 +34,24 @@ const getUserWithEmail = (email) => {
 
 exports.getUserWithEmail = getUserWithEmail;
 
+/// get completedStories
+const getCompletedStories = function(creatorId = null, limit = 10) {
+  return pool
+    .query(`SELECT s.*
+            FROM stories s
+            JOIN users u ON s.creatorId = u.id
+            WHERE isCompleted = true
+            `,)
+    .then((result) => {
+      console.log('resultCompletedStories:', result);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+exports.getCompletedStories = getCompletedStories;
+
 
 /**
  * Get a single user from the database given their id.
