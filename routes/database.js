@@ -93,11 +93,12 @@ exports.addUser = addUser;
 
 const getAllStories = function(creatorId = null, limit = 10) {
   return pool
-    .query(`SELECT *
+    .query(`SELECT s.*
             FROM stories s
             JOIN users u ON s.creatorId = u.id
             `,)
     .then((result) => {
+      console.log('resultASDF:',result);
       return result.rows;
     })
     .catch((err) => {
@@ -106,12 +107,29 @@ const getAllStories = function(creatorId = null, limit = 10) {
 };
 exports.getAllStories = getAllStories;
 
+const getStoryById = function(id) {
+  console.log('id:', id);
+  return pool
+    .query(`SELECT *
+            FROM stories s
+            WHERE s.id = $1
+            `,[id])
+    .then((result) => {
+      console.log('result.rows:', result.rows);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+exports.getStoryById = getStoryById;
+
 /// Stories
 
 /**
- * Get all reservations for a single user.
- * @param {string} guest_id The id of the user.
- * @return {Promise<[{}]>} A promise to the reservations.
+ * Get all contributions for a single user.
+ * @param {string} userId The id of the user.
+ * @return {Promise<[{}]>} A promise to the contributions.
  */
 
 
@@ -130,16 +148,17 @@ const getAllContributions = function(userId, limit = 10) {
 };
 exports.getAllContributions = getAllContributions;
 
-const getContributionsForStory = function(userId, storyId, limit = 10) {
+// const getContributionsForStory = function(userId, storyId, limit = 10) {
+const getContributionsForStory = function(storyId) {
   return pool
     .query(`SELECT *
             FROM contributions c
-            JOIN users u ON c.userId = u.id
             JOIN stories s ON c.storyId = s.id
-            WHERE c.userId = $1
-            AND c.storyId = $2
-            LIMIT $3`, [userId, storyId, limit])
+            WHERE c.storyId = $1`, [storyId]
+
+            /*LIMIT $3`, [userId, storyId, limit]*/)
     .then((result) => {
+      //console.log()
       return result.rows;
     })
     .catch((err) => {
@@ -148,6 +167,10 @@ const getContributionsForStory = function(userId, storyId, limit = 10) {
 };
 exports.getContributionsForStory = getContributionsForStory;
 
+/*
+WHERE c.userId = $1
+AND c.storyId = $2
+*/
 /// Properties
 
 /**
@@ -263,7 +286,7 @@ const getVoteCount = function(contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-const updateContribution = function(contributionId) {
+const updateContributions = function(contributionId) {
   return pool
     .query(`
     UPDATE contributions
@@ -284,4 +307,4 @@ const updateContribution = function(contributionId) {
       console.error(err.message);
     });
 };
-exports.updateContribution = updateContribution;
+exports.updateContributions = updateContributions;
