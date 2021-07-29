@@ -27,35 +27,35 @@ module.exports = (db) => {
 
 
   //post request to add contribution
-  router.post("/", (req, res) => {
-    const content = req.body.content;
-    const storyId = req.body.storyId;
-    const userId = req.session.userId;
-    const contribution = {
-      userId,
-      storyId,
-      content,
-    };
+  // router.post("/", (req, res) => {
+  //   const content = req.body.content;
+  //   const storyId = req.body.storyId;
+  //   const userId = req.session.userId;
+  //   const contribution = {
+  //     userId,
+  //     storyId,
+  //     content,
+  //   };
 
-    database.addContribution(contribution).then((contribution) => {
-      res.redirect("storyInProgress");
-    });
-  });
+  //   database.addContribution(contribution).then((contribution) => {
+  //     res.redirect("storyInProgress");
+  //   });
+  // });
 
-  //In storyShow.js create a function where if accepted, add to the story.
+  // //In storyShow.js create a function where if accepted, add to the story.
 
-  // creator of story can accept a contribution;
-  //this merges it to the rest of the story
+  // // creator of story can accept a contribution;
+  // //this merges it to the rest of the story
 
-  // accept contribution and merge it on to the story
-  // router.post("/:id", (req, res) => {
-  //   // const contributionId = req.body.contributionsId;
-  //   const contributionId = req.params.id;
+  // // accept contribution and merge it on to the story
+  // // router.post("/:id", (req, res) => {
+  // //   // const contributionId = req.body.contributionsId;
+  // //   const contributionId = req.params.id;
 
   //   database.updateContributions(contributionId).then(() => {
 
   //     res.redirect("/storyInProgress");
   //   });
-  // });
-  // return router;
+
+  return router;
 };
