@@ -61,21 +61,24 @@
     </header>
   </div>
 
-  <div>
+  <div class="progress-title-container">
     <span class="progress-title">
-      story titles
+      sum story titles
+    </span>
+
+    <span id="progress-blurb">
+      ...maybe a story will cheer you up!
     </span>
   </div>
 
-  <!-- write to make sure ifCompleted === false in order for title(teller-display) && teller-input to show up -->
-  <!-- also write to make ifCompleted === true -->
   <!-- title inputbox is in story -->
-  <div id="progress-storymaker">
+  <div id="progress-storymaker-box">
+    <div id="progress-storymaker">
 
-    <!-- form tag starts here-->
-    <!-- select option control -->
+      <!-- form tag starts here-->
+      <!-- select option control -->
 
-    <% for(let story in stories) { %>
+      <% for(let story in stories) { %>
 
       <a href=<%=`/storyInProgress/${stories[story].id}` %>>
         <%= stories[story].title %>
@@ -85,7 +88,7 @@
         <% } else {%>
           <span>status: incomplete</span>
           <% if (stories[story].creatorid === userId) {%>
-            <form action="/storyInProgress/<%= stories[story].id %>" method="POST">
+            <form action="storyInProgress/<%= stories[story].id %>" method="POST">
               <button type='submit'>change to complete</button>
             </form>
           <% } %>
@@ -101,9 +104,6 @@
                   </button>
                 </a>
               </div> -->
-
-
-
 
   </div>
 
