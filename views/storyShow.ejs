@@ -19,7 +19,7 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/contributions.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/storyShow.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -29,36 +29,37 @@
 
   <div>
     <header id="header">
+
       <div>
         <a href="/">
           <button class="header-logout">
-            Logout
+            logout
           </button>
         </a>
       </div>
+
       <div>
         <h1 id="header-sputtr">Sputtr</h1>
       </div>
+
       <div>
-        <a href="/completedStory">
+        <a href="/storyInProgress">
           <button class="header-saved">
-            Sputtr'd tales of old
+            <img src="/w6/story-creator-middie/img icons/back.png" alt="back-icon">
           </button>
         </a>
       </div>
+
     </header>
-  </div>
-
-  <div id="story-post">
-    <p>
-
-    </p>
   </div>
 
   <!-- write to make sure ifCompleted === false in order for title(teller-display) && teller-input to show up -->
   <!-- also write to make ifCompleted === true -->
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
+
+ 
+
     <h1>Title: <%= story.title %> </h1>
     <% if (story.iscompleted === false) {%>
     <h3>accepted </h3>
@@ -88,11 +89,27 @@
       </button>
       <% } %>
 
-    </form>
+
+            <button type="submit">
+              <img src="/w6/story-creator-middie/img icons/heart.png" alt="heart-icon">
+            </button>
 
 
+            <button type="submit">
+              edit name
+            </button>
 
 
+            <button type="submit">
+              post/finish
+            </button>
+
+            <button type="submit">
+              clear/delete
+            </button>
+
+          </div>
+        </form>
   </div>
 </body>
 

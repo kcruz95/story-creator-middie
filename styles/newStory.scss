@@ -60,21 +60,42 @@ div button:active {
   transform: scale(0.9);
 }
 
-div #teller-buttons {
-  align-items: center;
-  background-color: goldenrod;
-  display: flex;
-  transform: scale(0.9);
-}
+// div #teller-buttons {
+//   align-items: center;
+//   background-color: goldenrod;
+//   display: flex;
+//   transform: scale(0.9);
+// }
 
 a {
   text-decoration: none;
 }
 
-button .teller-template {
+// button .teller-template {
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   justify-content: center;
+//   margin-top: 1em;
+// }
+
+.newStory-title {
   display: flex;
   align-items: center;
-  // flex-direction: column;
+  flex-direction: column;
   justify-content: center;
-  margin-top: 1em;
+}
+
+#newStory-input {
+  background-color: bisque;
+  border: none;
+  border-radius: 29px;
+  color: maroon;
+  display: flex;
+  // flex-direction: column;
+  font-size: 32px;
+  font-family: 'Luckiest Guy';
+  // justify-content: flex-end;
+  margin: 0.5em;
+  padding: 20px;
 }

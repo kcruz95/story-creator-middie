@@ -29,55 +29,76 @@
 
   <div>
     <header id="header">
+
       <div>
         <a href="/">
           <button class="header-logout">
-            Logout
+            logout
           </button>
         </a>
       </div>
+
       <div>
         <h1 id="header-sputtr">Sputtr</h1>
       </div>
+
       <div>
         <a href="/completedStory">
           <button class="header-saved">
-            Sputtr'd tales of old
+            sputtr'd tales
           </button>
         </a>
       </div>
+
+      <div>
+        <a href="/newStory">
+          <button class="header-saved">
+            sputtr a new tale!
+          </button>
+        </a>
+      </div>
+
     </header>
   </div>
 
-  <div id="story-post">
-    <p>
-
-    </p>
+  <div>
+    <span class="progress-title">
+      story titles
+    </span>
   </div>
 
   <!-- write to make sure ifCompleted === false in order for title(teller-display) && teller-input to show up -->
   <!-- also write to make ifCompleted === true -->
   <!-- title inputbox is in story -->
-  <div id="teller-buttons">
+  <div id="progress-storymaker">
 
     <!-- form tag starts here-->
     <!-- select option control -->
 
-
-
     <% for(let story in stories) { %>
 
       <a href=<%=`/storyInProgress/${stories[story].id}` %>>
-        <%= stories[story].title %></a>
-            <% if (stories[story].iscompleted === true) {%>
-              <span>completed</span>
-            <% } else {%>
-              <span>in progress</span>
+        <%= stories[story].title %>
+      </a>
+      <% if (stories[story].iscompleted===true) {%>
+        <span>completed</span>
+        <% } else {%>
+          <span>incomplete</span>
           <% } %>
+            <% } %>
 
-          <% } %>
+              <!-- Form tag closes here-->
 
-        <!-- Form tag closes here-->
+              <div id="progress-buttons">
+                <a href="">
+                  <button class="progress-delete">
+                    delete a title
+                  </button>
+                </a>
+              </div>
+
+
+
 
   </div>
 
