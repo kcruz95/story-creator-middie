@@ -52,12 +52,8 @@ module.exports = (db) => {
     // const contributionId = req.body.contributionsId;
     const contributionId = req.params.id;
 
-<<<<<<< HEAD
-    database.updateContributions(contributions).then((contributions) => {
-=======
     database.updateContributions(contributionId).then(() => {
 
->>>>>>> 9c13ebe96081f75fc4d043c5cbfd0e94aea4ca16
       res.redirect("/storyInProgress");
     });
   });
