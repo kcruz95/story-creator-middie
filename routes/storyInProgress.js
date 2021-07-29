@@ -8,7 +8,7 @@ module.exports = (db) => {
   router.get("/", async (req, res) => {
     const stories = await database.getAllStories();
 
-    templateVars = {
+    const = templateVars = {
       stories: stories,
       userId: req.session.userId
     }
