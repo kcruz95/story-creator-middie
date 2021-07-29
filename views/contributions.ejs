@@ -19,7 +19,7 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/storyInProgress.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/contributions.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -64,15 +64,15 @@
 
       <select name="storyId" id="storyId" multiple>
         <% for(let story in stories) { %>
-        <option value=<%= stories[story].id %>>
-          <%= stories[story].title %></option>
-        <% } %>
+          <option value=<%=stories[story].id %>>
+            <%= stories[story].title %>
+          </option>
+          <% } %>
       </select>
-      <textarea name="content" class="teller-input"
-      placeholder="What happened next?"></textarea>
-        <button class="teller-template" type='submit'>
-          Submit
-        </button>
+      <textarea name="content" class="teller-input" placeholder="What happened next?"></textarea>
+      <button class="teller-template" type='submit'>
+        Submit
+      </button>
 
 
 

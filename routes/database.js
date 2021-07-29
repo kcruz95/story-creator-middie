@@ -91,11 +91,7 @@ exports.addUser = addUser;
  */
 
 
-<<<<<<< HEAD
-const getAllStories = function (creator_id = null, limit = 10) {
-=======
-const getAllStories = function(creatorId = null, limit = 10) {
->>>>>>> 3d934b8d61088823da8c3c3b445fd76f809ed39d
+const getAllStories = function (creatorId = null, limit = 10) {
   return pool
     .query(`SELECT *
             FROM stories s
@@ -119,11 +115,7 @@ exports.getAllStories = getAllStories;
  */
 
 
-<<<<<<< HEAD
-const getAllContributions = function (user_id, limit = 10) {
-=======
-const getAllContributions = function(userId, limit = 10) {
->>>>>>> 3d934b8d61088823da8c3c3b445fd76f809ed39d
+const getAllContributions = function (userId, limit = 10) {
   return pool
     .query(`SELECT *
             FROM contributions c
@@ -138,18 +130,7 @@ const getAllContributions = function(userId, limit = 10) {
 };
 exports.getAllContributions = getAllContributions;
 
-<<<<<<< HEAD
-const getContributionsForStory = function (user_id, story_id, limit = 10) {
-  return pool
-    .query(`SELECT *
-            FROM contributions c
-            JOIN users u ON c.user_id = u.id
-            JOIN stories s ON c.story_id = s.id
-            WHERE c.user_id = $1
-            AND c.story_id = $2
-            LIMIT $2`, [user_id, story_id, limit])
-=======
-const getContributionsForStory = function(userId, storyId, limit = 10) {
+const getContributionsForStory = function (userId, storyId, limit = 10) {
   return pool
     .query(`SELECT *
             FROM contributions c
@@ -158,7 +139,6 @@ const getContributionsForStory = function(userId, storyId, limit = 10) {
             WHERE c.userId = $1
             AND c.storyId = $2
             LIMIT $3`, [userId, storyId, limit])
->>>>>>> 3d934b8d61088823da8c3c3b445fd76f809ed39d
     .then((result) => {
       return result.rows;
     })
@@ -265,11 +245,7 @@ exports.addContribution = addContribution;
 //attach contribution to story
 
 //count votes per contribution
-<<<<<<< HEAD
-const getVoteCount = function (contribution_id) {
-=======
-const getVoteCount = function(contributionId) {
->>>>>>> 3d934b8d61088823da8c3c3b445fd76f809ed39d
+const getVoteCount = function (contributionId) {
   return pool
     .query(`
     SELECT c.id, count(v.id)
@@ -287,7 +263,7 @@ const getVoteCount = function(contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-const updateContribution = function(contributionId) {
+const updateContribution = function (contributionId) {
   return pool
     .query(`
     UPDATE contributions
