@@ -5,10 +5,23 @@ const database = require("./database");
 
 module.exports = (db) => {
   // GET request to view storyteller page
-  router.get("/", async(req, res) => {
-    const stories = await database.getAllStories();
-    console.log(stories);
-    res.render("storyShow", { stories: stories });
+  // router.get("/", async(req, res) => {
+  //   const stories = await database.getAllStories();
+  //   console.log(stories);
+  //   res.render("storyShow", { stories: stories });
+  // });
+
+  router.get("/:id", async(req, res) => {
+    const contributions = await database.getContributionsForStory(req.params.id);
+    const story = await database.getAllStories();
+
+    const templateVars = {
+      contributions: contributions,
+      story: story,
+      userId: req.session.userId
+    };
+    console.log('storyShow.js');
+    res.render("storyShow", templateVars);
   });
 
 
@@ -20,7 +33,7 @@ module.exports = (db) => {
     const contribution = {
       userId,
       storyId,
-      content,
+      content
     };
 
     database.addContribution(contribution).then((contribution) => {

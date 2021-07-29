@@ -85,7 +85,7 @@
         <% } else {%>
           <span>status: incomplete</span>
           <% if (stories[story].creatorid === userId) {%>
-            <form action="/storyInProgress/<%= stories[story].id %>" method="POST">
+            <form action="storyInProgress/<%= stories[story].id %>" method="POST">
               <button type='submit'>change to complete</button>
             </form>
           <% } %>
