@@ -6,11 +6,13 @@ const database = require("./database");
 module.exports = (db) => {
 
   // GET request to view storyteller page
-  router.get("/", async (req, res) => {
+  router.get("/", async(req, res) => {
 
-    const stories = await database.getAllStories();
+    // const stories = await database.getAllStories();
+    const currentStories = await database.getCurrentStories();
 
-    res.render("storyInProgress", { stories: stories });
+    // res.render("storyInProgress", { stories: stories });
+    res.render("storyInProgress", { currentStories: currentStories });
   });
 
   router.post("/", (req, res) => {
@@ -20,7 +22,7 @@ module.exports = (db) => {
 
   });
 
-  router.get('/:id', async (req, res) => {
+  router.get('/:id', async(req, res) => {
     const storyId = req.params.id;
 
     // const email = req.session.email;
@@ -32,15 +34,33 @@ module.exports = (db) => {
     const templateVars = { contributions, story };
 
     return res.render("storyShow", templateVars);
-  })
+  });
 
+    // accept contribution and merge it on to the story
+    router.post("/:id/complete", (req, res) => {
+      // const contributionId = req.body.contributionsId;
+      const storyId = req.params.storyId;
+      const title = req.body.title;
+      const userId = req.session.userId;
+      const stories = {
+        userId,
+        storyId,
+        title
+      };
+      console.log('postAcceptReq:', req);
+      database.updateStoryToComplete(stories).then((stories) => {
+        res.redirect("completedStory");
+      });
+    });
+    return router;
+  };
 
   return router;
 };
 
 
 
-//       //   // GET request to edit URL with the right user
+// //   // GET request to edit URL with the right user
 // // app.get("/urls/:shortURL", (req, res) => {
 // //   const shortURL = req.params.shortURL;
 
