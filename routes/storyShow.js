@@ -37,18 +37,10 @@ module.exports = (db) => {
   router.post("/:id/accept", (req, res) => {
     // const contributionId = req.body.contributionsId;
     const contributionId = req.params.id;
-    const content = req.body.content;
-    const storyId = req.body.storyId;
-    const userId = req.session.userId;
-    const contributions = {
-      contributionId,
-      userId,
-      storyId,
-      content,
-    };
 
-    database.updateContributions(contributions).then((contributions) => {
-      res.redirect("storyInProgress");
+    database.updateContributions(contributionId).then(() => {
+
+      res.redirect("/storyInProgress");
     });
   });
   return router;
