@@ -45,7 +45,7 @@
       <div>
         <a href="/storyInProgress">
           <button class="header-saved">
-            <img src="/w6/story-creator-middie/img icons/back.png" alt="back-icon">
+            <img src="/img icons/back.png" alt="back-icon">
           </button>
         </a>
       </div>
@@ -58,9 +58,7 @@
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
 
-
-
-    <h1>Title: <%= story.title %> </h1>
+   <h1>Title: <%= story.title %> </h1>
 
     <% if (story.iscompleted) {%>
       <% for(let contribution in contributions) { %>
@@ -144,6 +142,7 @@
 
   </div>
   </div>
+
 </body>
 
 </html>

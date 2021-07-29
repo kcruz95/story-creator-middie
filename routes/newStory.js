@@ -15,40 +15,6 @@ module.exports = (db) => {
 
   });
 
-  // router.get('/stories', (req, res) => {
-  //   const userId = req.session.userId;
-  //   if (!userId) {
-  //     res.error("💩");
-  //     return;
-  //   // }database.getAllStories(req.query, 10)
-  //   }database.getAllStories(userId)
-  //     .then(stories => res.send({stories}))
-  //     .catch(e => {
-  //       console.error(e);
-  //       res.send(e);
-  //     });
-  // });
-
-  // app.get("/urls", (req, res) => {
-  //   let currentUser = req.session["user_id"];
-  //   let userUrl = {};
-
-  //   // Only allows signed in user to view their own URL
-  //   for (const short in urlDatabase) {
-  //     if (urlDatabase[short].userID === currentUser) {
-  //       userUrl[short] = urlDatabase[short].longURL;
-  //     } else if (!currentUser) {
-  //       // Return error when no user is logged in
-  //       return res.status(403).send("unauthorized access");
-  //     }
-  //   }
-  //   const templateVars = {
-  //     urls: userUrl,
-  //     user: getUser(users, req.session["user_id"]),
-  //   };
-  //   res.render("urls_index", templateVars);
-  // });
-
 
   // POST request to create NEW STORY
   router.post("/", (req, res) => {
@@ -65,17 +31,5 @@ module.exports = (db) => {
       });
   });
 
-  // POST request to create NEW STORY
-  // router.post('/stories', (req, res) => {
-  //   const userId = req.session.userId;
-  //   database.addStory({...req.body, userId})
-  //     .then(story => {
-  //       res.send(story);
-  //     })
-  //     .catch(e => {
-  //       console.error(e);
-  //       res.send(e);
-  //     });
-  // });
   return router;
 };
