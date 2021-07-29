@@ -29,57 +29,73 @@
 
   <div>
     <header id="header">
+
       <div>
         <a href="/">
           <button class="header-logout">
-            Logout
+            logout
           </button>
         </a>
       </div>
+
       <div>
         <h1 id="header-sputtr">Sputtr</h1>
       </div>
+
       <div>
         <a href="/completedStory">
           <button class="header-saved">
-            Sputtr'd tales of old
+            sputtr'd tales
           </button>
         </a>
       </div>
+
+      <div>
+        <a href="/newStory">
+          <button class="header-saved">
+            sputtr a new tale!
+          </button>
+        </a>
+      </div>
+
     </header>
   </div>
 
-  <div id="story-post">
-    <p>
-
-    </p>
+  <div>
+    <span class="progress-title">
+      story titles
+    </span>
   </div>
 
   <!-- write to make sure ifCompleted === false in order for title(teller-display) && teller-input to show up -->
   <!-- also write to make ifCompleted === true -->
   <!-- title inputbox is in story -->
-  <div id="teller-buttons">
+  <div id="progress-storymaker">
 
-    <form class="form-inline" action="/storyInProgress" method="POST">
+    <!-- form tag starts here-->
+    <!-- select option control -->
 
-      <select name="storyId" id="storyId" multiple>
-        <% for(let story in stories) { %>
-          <option value=<%=stories[story].id %>>
-            <%= stories[story].title %>
-          </option>
+    <% for(let story in stories) { %>
+      <a href=<%=`/storyInProgress/${stories[story].id}` %>>
+        <%= stories[story].title %>
+      </a>
+      <% if (stories[story].iscompleted===true) {%>
+        <span>completed</span>
+        <% } else {%>
+          <span>incomplete</span>
           <% } %>
+            <% } %>
 
-            <% %>
-      </select>
-      <form method="GET" action="/stories/<%= story %>">
-        <button class="teller-template" type='submit'>
-          Submit
-        </button>
-      </form>
+              <!-- Form tag closes here-->
 
+              <div id="progress-buttons">
+                <a href="">
+                  <button class="progress-delete">
+                    delete a title
+                  </button>
+                </a>
+              </div>
 
-
-    </form>
   </div>
 
 </body>

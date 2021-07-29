@@ -31,18 +31,27 @@
       <div>
         <a href="/">
           <button class="header-logout">
-            Logout
+            logout
           </button>
         </a>
       </div>
+
       <div>
         <h1 id="header-sputtr">Sputtr</h1>
       </div>
 
       <div>
+        <a href="/storyInProgress">
+          <button class="header-saved">
+            continue ur tale!
+          </button>
+        </a>
+      </div>
+
+      <div>
         <a href="/completedStory">
           <button class="header-saved">
-            Sputtr'd tales of old
+            sputtr'd tales
           </button>
         </a>
       </div>
@@ -50,18 +59,14 @@
     </header>
   </div>
 
-  <main style="margin: 1em">
-    <h3>Sputtr a title!</h3>
-    <form class="form-inline" action="/newStory" method="POST">
-      <div class="form-group mb-2">
-        <label for="newStoryText">start it here:</label>
-        <input name="content" class="form-control"
-        type="text" value="type here" style="width: 300px; margin: 1em" />
+  <div class="newStory-title">
+    <form class="newStory-form" action="/newStory" method="POST">
+      <input name="content" class="form-control" type="text" value="" placeholder="sputtr a title!" />
 
-        <button type="submit">Let's Continue!</button>
+      <button class="newStory-button" type="submit">add a title n continue!</button>
 
-      </div>
     </form>
+  </div>
 </body>
 
 </html>

@@ -40,7 +40,8 @@ CREATE TABLE contributions (
   content TEXT NOT NULL,
   status VARCHAR(255) NOT NULL DEFAULT 'pending', --pending/denied/accepted // ENUM('pending','accepted','denied') - data type that stores string
   --upvote_count INTEGER NOT NULL DEFAULT 0, --to be removed
-  sequence INTEGER DEFAULT NULL
+  --sequence INTEGER DEFAULT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE votes (
