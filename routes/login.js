@@ -18,7 +18,7 @@ module.exports = (db) => {
     const password = req.body.password;
 
     if (!email || !password) {
-      res.status(401).send("incorrect user or pass");
+      res.render("error");
     }
 
     // db.query(`SELECT *FROM users WHERE email = $1`, [email]).then((result) => {
@@ -26,7 +26,7 @@ module.exports = (db) => {
 
     database.getUserWithEmail(email).then((user) => {
       if (!user || user.password !== password) {
-        res.status(401).send("incorrect user or pass");
+        res.render("error");
       }
       req.session.userId = user.id;
 
