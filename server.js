@@ -51,6 +51,7 @@ const widgetsRoutes = require("./routes/widgets");
 const loginRoutes = require("./routes/login");
 const newStory = require("./routes/newStory");
 const storyInProgress = require("./routes/storyInProgress");
+const storyShow = require("./routes/storyShow");
 
 
 // Mount all resource routes
@@ -61,6 +62,7 @@ app.use("/login", loginRoutes(db));
 app.use("/error", loginRoutes(db));
 app.use("/newStory", newStory(db));
 app.use("/storyInProgress", storyInProgress(db));
+app.use("/storyShow", storyShow(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -68,7 +70,6 @@ app.use("/storyInProgress", storyInProgress(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-
   res.render("index");
 }); // fix app post later
 

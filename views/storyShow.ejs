@@ -59,7 +59,9 @@
   <!-- also write to make ifCompleted === true -->
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
+    <h3>Title: <%= story.title %> </h3>
 
+<<<<<<< HEAD:views/contributions.ejs
     <form class="form-inline" action="/storyInProgress" method="POST">
 
       <select name="storyId" id="storyId" multiple>
@@ -73,10 +75,25 @@
       <button class="teller-template" type='submit'>
         Submit
       </button>
-
-
+=======
+        <% for(let contribution in contributions) { %>
+          <span><%= contributions[contribution].content %></span>
+        <% } %>
+        <form method="post" action="/storyShow" value="">
+      <textarea name="content" class="teller-input"
+      placeholder="What happened next?"></textarea>
+      <input  type="text" name="storyId"
+      value="<%= story.id %>" style="display:none">
+      <button type= "submit">
+        submit
+      </button>
 
     </form>
+
+>>>>>>> 188e7953cfa81a76a0489cfed5829ff54f206a89:views/storyShow.ejs
+
+
+
   </div>
 </body>
 

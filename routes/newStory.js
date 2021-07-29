@@ -11,38 +11,30 @@ module.exports = (db) => {
 
   // POST request to create NEW STORY
   router.post("/", (req, res) => {
-    console.log('req.body:', req.body);
     const content = req.body.content;
     const userId = req.session.userId;
     const story = {
-      creator_id: userId,
+      creatorId: userId,
       title: content
-    }
+    };
 
     database.addStory(story)
       .then((story) => {
         res.redirect("storyInProgress");
       });
   });
-  //   database.addStory(story)
-  //     .then((story) => {
-  //       res.redirect("storyInProgress");
-  //     });
-
-  // })
-
 
   // POST request to create NEW STORY
-  router.post('/stories', (req, res) => {
-    const userId = req.session.userId;
-    database.addStory({...req.body, userId})
-      .then(story => {
-        res.send(story);
-      })
-      .catch(e => {
-        console.error(e);
-        res.send(e);
-      });
-  });
+  // router.post('/stories', (req, res) => {
+  //   const userId = req.session.userId;
+  //   database.addStory({...req.body, userId})
+  //     .then(story => {
+  //       res.send(story);
+  //     })
+  //     .catch(e => {
+  //       console.error(e);
+  //       res.send(e);
+  //     });
+  // });
   return router;
 };

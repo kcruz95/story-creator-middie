@@ -60,23 +60,17 @@
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
 
-    <form class="form-inline" action="/storyInProgress" method="POST">
+    <!-- form tag starts here-->
+    <!-- select option control -->
 
-      <select name="storyId" id="storyId" multiple>
-        <% for(let story in stories) { %>
-          <option value=<%=stories[story].id %>>
-            <%= stories[story].title %>
-          </option>
-          <% } %>
 
-            <% %>
-      </select>
-      <form method="GET" action="/stories/<%= story %>">
-        <button class="teller-template" type='submit'>
-          Submit
-        </button>
-      </form>
-    </form>
+
+    <% for(let story in stories) { %>
+      <a href=<%=`/storyInProgress/${stories[story].id}` %>><%= stories[story].title %></a>
+      <% } %>
+
+        <!-- Form tag closes here-->
+
   </div>
 
 </body>

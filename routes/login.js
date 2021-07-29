@@ -7,6 +7,7 @@ const database = require("./database");
 module.exports = (db) => {
   // GET back the view for login page
   router.get("/", (req, res) => {
+    //console.log("rohit testing login");
     res.render("login");
   });
 
