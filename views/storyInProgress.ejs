@@ -80,6 +80,7 @@
 
       <% for(let story in stories) { %>
 
+        <div id="progress-titleStatus">
       <a href=<%=`/storyInProgress/${stories[story].id}` %>>
         <%= stories[story].title %>
       </a>
@@ -91,6 +92,7 @@
             <form action="storyInProgress/<%= stories[story].id %>/complete" method="POST">
               <button type='submit'>change to complete</button>
             </form>
+          </div>
           <% } %>
           <% } %>
             <% } %>

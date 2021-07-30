@@ -59,7 +59,7 @@
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
 
-   <h1>Title: <%= story.title %> </h1>
+   <h1><%= story.title %> </h1>
 
     <% if (story.iscompleted) {%>
       <% for(let contribution in contributions) { %>
@@ -69,17 +69,20 @@
 
 
     <% if (!story.iscompleted) {%>
-    <h3>accepted </h3>
+
     <% for(let contribution in contributions) { %>
       <% if (contributions[contribution].status === 'accepted') {%>
-      <div><%= contributions[contribution].content %></div>
+      <span><%= contributions[contribution].content %></span>
       <% } %>
     <% } %>
+
     <h3>pending </h3>
         <% for(let contribution in contributions) { %>
          <% if (contributions[contribution].status === 'pending') {%>
 
-          <div><%= contributions[contribution].content %>
+          <div>
+            <div class="show-heart">
+            <%= contributions[contribution].content %>
             <script type="text/javascript">
               var clicks = 0;
               function hello(id) {
@@ -87,8 +90,11 @@
                   document.getElementById(id).innerHTML = clicks;
               };
               </script>
+              <br>
+
+                <p style="margin-left: 0.7em;">Like <a id="<%= contributions[contribution].id %>">0</a></p>
               <button type="button" onclick= "hello(<%= contributions[contribution].id %>)"><img src="/img icons/heart.png" alt="heart-icon"></button>
-              <p>Like <a id="<%= contributions[contribution].id %>">0</a></p>
+
 
             <form action="<%= contributions[contribution].id %>/accept" method= "POST">
               <% if (story.creatorid === userId) { %>
@@ -97,10 +103,12 @@
                 </button>
                 <% } %>
               </form>
+            </div>
           </div>
           <% } %>
         <% } %>
     <form method="post" action="/storyShow" value="">
+      <div id="show-textSubmit">
       <textarea name="content" class="teller-input"
       placeholder="What happened next?"></textarea>
       <input  type="text" name="storyId"
@@ -108,6 +116,7 @@
       <button type= "submit">
         submit
       </button>
+    </div>
     </form>
       <% } %>
 
@@ -131,3 +140,4 @@
 </body>
 
 </html>
+

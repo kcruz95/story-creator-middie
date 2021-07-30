@@ -192,7 +192,7 @@ AND c.storyId = $2
 */
 /// Properties
 
-/**
+/*
  * Get all properties.
  * @param {{}} options An object containing query options.
  * @param {*} limit The number of results to return.
@@ -323,7 +323,8 @@ exports.updateStoryToComplete = updateStoryToComplete;
 
 const updateContributions = function(contributionId) {
   const sql1 = `UPDATE contributions SET status = 'accepted', updatedAt = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *`;
-  const sql2 = `UPDATE contributions SET status = 'rejected', updatedAt = CURRENT_TIMESTAMP WHERE id <> $1 AND storyid = $2`;
+  const sql2 = `UPDATE contributions SET status = 'rejected', updatedAt = CURRENT_TIMESTAMP WHERE status <> 'accepted' AND id <> $1
+  AND storyid = $2`;
 
 
   return pool
@@ -331,8 +332,7 @@ const updateContributions = function(contributionId) {
     .then((result) => {
 
       const record = result.rows[0];
-      console.log('record:',record);
-      console.log('[contributionId, record.storyId]:',[contributionId, record.storyid]);
+
       return pool.query(sql2, [contributionId, record.storyid]);
 
     })
