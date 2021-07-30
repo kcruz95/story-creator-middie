@@ -30,7 +30,7 @@ module.exports = (db) => {
       }
       req.session.userId = user.id;
 
-      res.redirect("/newStory");
+      res.redirect("/storyInProgress");
     });
   });
 
