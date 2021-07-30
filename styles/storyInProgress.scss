@@ -29,6 +29,13 @@ body {
   // position: absolute;
 }
 
+#header-div {
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
 button .header-logout {
   display: flex;
   justify-content: flex-start;
