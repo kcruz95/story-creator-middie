@@ -4,13 +4,6 @@ const router = express.Router();
 const database = require("./database");
 
 module.exports = (db) => {
-<<<<<<< HEAD
-  //GET request to view storyShow page
-  router.get("/", async(req, res) => {
-    const stories = await database.getAllStories();
-
-    res.render("storyShow", { stories: stories });
-=======
   // GET request to view storyteller page
   // router.get("/", async(req, res) => {
   //   const stories = await database.getAllStories();
@@ -29,40 +22,9 @@ module.exports = (db) => {
     };
     console.log('storyShow.js');
     res.render("storyShow", templateVars);
->>>>>>> master
   });
 
-  // router.get("/:id", async (req, res) => {
-  //   const contributions = await database.getContributionsForStory(req.params.id);
-  //   const story = await database.getAllStories();
 
-<<<<<<< HEAD
-  //   const templateVars = {
-  //     contributions: contributions,
-  //     story: story,
-  //     userId: req.session.userId
-  //   };
-
-  //   res.render("storyShow", templateVars);
-  // });
-
-  // post request to add contribution
-router.post("/", (req, res) => {
-  const content = req.body.content;
-  const storyId = req.body.storyId;
-  const userId = req.session.userId;
-  const contribution = {
-    userId,
-    storyId,
-    content,
-  };
-
-  database.addContribution(contribution).then((contribution) => {
-    res.redirect("storyInProgress");
-  });
-});
-
-=======
   //post request to add contribution
   router.post("/", (req, res) => {
     const content = req.body.content;
@@ -94,6 +56,5 @@ router.post("/", (req, res) => {
   //     res.redirect("/storyInProgress");
   //   });
   // });
->>>>>>> master
   return router;
 };

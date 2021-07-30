@@ -8,11 +8,7 @@ module.exports = (db) => {
   router.get("/", async (req, res) => {
     const stories = await database.getAllStories();
 
-<<<<<<< HEAD
-    const = templateVars = {
-=======
     const templateVars = {
->>>>>>> master
       stories: stories,
       userId: req.session.userId
     };
@@ -42,7 +38,7 @@ module.exports = (db) => {
 
 
   // post route to change status to complete
-  router.post("/:id/accept", (req, res) => {
+  router.post("/:id/complete", (req, res) => {
     const storyId = req.params.id;
 
     database.updateStoryToComplete(storyId).then(() => {
@@ -50,7 +46,7 @@ module.exports = (db) => {
     });
   });
 
-  router.post("/:id/update", (req, res) => {
+  router.post("/:id/accept", (req, res) => {
     // const contributionId = req.body.contributionsId;
     const contributionId = req.params.id;
 
@@ -63,4 +59,3 @@ module.exports = (db) => {
 
   return router;
 };
-
