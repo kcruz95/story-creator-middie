@@ -154,7 +154,8 @@ const getAllContributions = function (userId, limit = 10) {
   return pool
     .query(`SELECT *
             FROM contributions c
-            JOIN users u ON c.userId = u.id`
+            JOIN users u ON c.userId = u.id
+            ORDER BY c.updatedAt DESC`
     /*WHERE c.userId = $1 LIMIT $2`, [userId, limit]*/)
     .then((result) => {
       return result.rows;
@@ -171,11 +172,12 @@ const getContributionsForStory = function(storyId) {
     .query(`SELECT c.*
             FROM contributions c
             JOIN stories s ON c.storyId = s.id
-            WHERE c.storyId = $1`, [storyId]
+            WHERE c.storyId = $1
+            ORDER BY c.updatedAt DESC`, [storyId]
 
     /*LIMIT $3`, [userId, storyId, limit]*/)
     .then((result) => {
-      //console.log()
+      console.log('result:',result);
       return result.rows;
     })
     .catch((err) => {
@@ -303,9 +305,6 @@ const getVoteCount = function (contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-
-
-
 const updateStoryToComplete = function (storyId) {
   return pool
     .query(`
@@ -323,8 +322,9 @@ const updateStoryToComplete = function (storyId) {
 exports.updateStoryToComplete = updateStoryToComplete;
 
 const updateContributions = function(contributionId) {
-  const sql1 = `UPDATE contributions SET status = 'accepted' WHERE id = $1 RETURNING *`;
-  const sql2 = `UPDATE contributions SET status = 'rejected' WHERE id <> $1 AND storyid = $2`;
+  const sql1 = `UPDATE contributions SET status = 'accepted', updatedAt = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *`;
+  const sql2 = `UPDATE contributions SET status = 'rejected', updatedAt = CURRENT_TIMESTAMP WHERE id <> $1 AND storyid = $2`;
+
 
   return pool
     .query(sql1, [contributionId])

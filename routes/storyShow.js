@@ -20,7 +20,7 @@ module.exports = (db) => {
       story: story,
       userId: req.session.userId
     };
-    console.log('storyShow.js');
+    console.log('templateVars:', templateVars);
     res.render("storyShow", templateVars);
   });
 

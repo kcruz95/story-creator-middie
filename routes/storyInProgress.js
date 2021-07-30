@@ -16,7 +16,7 @@ module.exports = (db) => {
     res.render("storyInProgress", templateVars);
   });
 
-  router.post("/", (req, res) => {
+  router.post("/:id", (req, res) => {
     const storyId = req.body.storyId;
 
     //database query
@@ -32,7 +32,7 @@ module.exports = (db) => {
 
     // const templateVars = { shortURL: urlID, longURL: urlDatabase[req.params.shortURL].longURL, user};
     const templateVars = { userId, contributions, story };
-    console.log(templateVars);
+    console.log('templateVars:',templateVars);
     return res.render("storyShow", templateVars);
   });
 
