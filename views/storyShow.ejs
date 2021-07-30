@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +28,7 @@
 
 <body>
 
-  <div>
+  <div id="header-div">
     <header id="header">
 
       <div>
@@ -45,7 +46,7 @@
       <div>
         <a href="/storyInProgress">
           <button class="header-saved">
-            <img src="/w6/story-creator-middie/img icons/back.png" alt="back-icon">
+            <img src="/img icons/back.png" alt="back-icon">
           </button>
         </a>
       </div>
@@ -58,9 +59,7 @@
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
 
-
-
-    <h1>Title: <%= story.title %> </h1>
+   <h1>Title: <%= story.title %> </h1>
 
     <% if (story.iscompleted) {%>
       <% for(let contribution in contributions) { %>
@@ -71,32 +70,26 @@
 
     <% if (!story.iscompleted) {%>
     <h3>accepted </h3>
-
     <% for(let contribution in contributions) { %>
       <% if (contributions[contribution].status === 'accepted') {%>
       <div><%= contributions[contribution].content %></div>
       <% } %>
     <% } %>
-
     <h3>pending </h3>
-
         <% for(let contribution in contributions) { %>
          <% if (contributions[contribution].status === 'pending') {%>
+
           <div><%= contributions[contribution].content %>
             <script type="text/javascript">
-
               var clicks = 0;
-              function hello() {
+              function hello(id) {
                   clicks += 1;
-                  document.getElementById("clicks").innerHTML = clicks;
+                  document.getElementById(id).innerHTML = clicks;
               };
               </script>
-              <button type="button" onclick="hello()">Like</button>
-              <p>Like <a id="clicks">0</a></p>
+              <button type="button" onclick= "hello(<%= contributions[contribution].id %>)"><img src="/img icons/heart.png" alt="heart-icon"></button>
+              <p>Like <a id="<%= contributions[contribution].id %>">0</a></p>
 
-            <!-- <button type="submit">
-              <img src="/w6/story-creator-middie/img icons/heart.png" alt="heart-icon">
-            </button> -->
             <form action="<%= contributions[contribution].id %>/accept" method= "POST">
               <% if (story.creatorid === userId) { %>
                 <button type="submit">
@@ -106,12 +99,7 @@
               </form>
           </div>
           <% } %>
-
-
-
         <% } %>
-
-
     <form method="post" action="/storyShow" value="">
       <textarea name="content" class="teller-input"
       placeholder="What happened next?"></textarea>
@@ -121,8 +109,6 @@
         submit
       </button>
     </form>
-
-
       <% } %>
 
 
@@ -131,12 +117,9 @@
             <!-- <button type="submit">
               edit name
             </button>
-
-
             <button type="submit">
               post/finish
             </button>
-
             <button type="submit">
               clear/delete
             </button> -->
@@ -144,6 +127,7 @@
 
   </div>
   </div>
+
 </body>
 
 </html>

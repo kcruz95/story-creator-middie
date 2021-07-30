@@ -33,27 +33,29 @@
     <h1 id="sputtr">Sputtr</h1>
   </div>
 
-  <form action="/login" method="POST">
-    <p class="login-credens">
+  <div id="login-input">
+    <form action="/login" method="POST">
+      <p class="login-credens">
 
-      <input type="email" name="email" placeholder="Email" />
+        <input type="email" name="email" placeholder="Email" />
 
-      <input type="password" name="password" placeholder="Password" />
-    </p>
+        <input type="password" name="password" placeholder="Password" />
+      </p>
+  </div>
 
-    <div id="login-buttons">
+  <div id="login-buttons">
 
-      <button type="submit" class="login-login">
-        login
+    <button type="submit" class="login-login">
+      login
+    </button>
+
+    <a href="/">
+      <button class="login-back">
+        go back
       </button>
+    </a>
 
-      <a href="/">
-        <button class="login-back">
-          go back
-        </button>
-      </a>
-
-    </div>
+  </div>
   </form>
 </body>
 

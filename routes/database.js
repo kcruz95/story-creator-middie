@@ -305,6 +305,22 @@ const getVoteCount = function (contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
+const updateStoryToComplete = function (storyId) {
+  return pool
+    .query(`
+    UPDATE stories
+    SET isCompleted = TRUE
+    WHERE id = $1`, [storyId])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+
+exports.updateStoryToComplete = updateStoryToComplete;
+
 const updateContributions = function(contributionId) {
   const sql1 = `UPDATE contributions SET status = 'accepted', updatedAt = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *`;
   const sql2 = `UPDATE contributions SET status = 'rejected', updatedAt = CURRENT_TIMESTAMP WHERE id <> $1 AND storyid = $2`;
@@ -325,20 +341,3 @@ const updateContributions = function(contributionId) {
     });
 };
 exports.updateContributions = updateContributions;
-
-
-const updateStoryToComplete = function(storyId) {
-  return pool
-    .query(`
-    UPDATE stories
-    SET isCompleted = TRUE
-    WHERE id = $1`, [storyId])
-    .then((result) => {
-      return result.rows;
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
-};
-
-exports.updateStoryToComplete = updateStoryToComplete;
