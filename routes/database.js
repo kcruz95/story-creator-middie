@@ -274,7 +274,8 @@ exports.addContribution = addContribution;
 const updateContributions = function(contributionId) {
 
   const sql1 = `UPDATE contributions SET status = 'accepted', updatedAt = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *`;
-  const sql2 = `UPDATE contributions SET status = 'rejected', updatedAt = CURRENT_TIMESTAMP WHERE id <> $1 AND storyid = $2`;
+  const sql2 = `UPDATE contributions SET status = 'rejected', updatedAt = CURRENT_TIMESTAMP WHERE status <> 'accepted' AND id <> $1
+  AND storyid = $2`;
 
   return pool
     .query(sql1, [contributionId])

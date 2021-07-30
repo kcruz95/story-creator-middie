@@ -113,6 +113,7 @@ button #progress-buttons {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 #progress-storymaker {
@@ -128,6 +129,7 @@ button #progress-buttons {
   font-size: 32px;
   font-family: 'Luckiest Guy';
   margin-top: 1em;
+  margin-bottom: 1em;
   width: 50%;
 }
 
@@ -137,11 +139,12 @@ button #progress-buttons {
   width: 100%;
 }
 
-// .teller-input {
-//   background-color: bisque;
-//   border: none;
-//   border-radius: 29px;
-//   display: flex;
-//   margin: 2em;
-//   padding: 20px;
-// }
+#progress-titleStatus {
+  // display:flex;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  align-content: space-around;
+  align-items: center;
+  flex-direction: row;
+
+}

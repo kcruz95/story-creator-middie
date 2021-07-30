@@ -31,11 +31,11 @@
     <header id="header">
 
       <div>
-        <a href="/">
-          <button class="header-logout">
+        <form action="/logout" method="POST">
+          <button type="submit" class="header-logout">
             logout
           </button>
-        </a>
+          </form>
       </div>
 
       <div>
@@ -49,15 +49,6 @@
           </button>
         </a>
       </div>
-
-      <!-- <div>
-        <a href="/completedStory">
-          <button class="header-saved">
-            sputtr'd tales
-          </button>
-        </a>
-      </div> -->
-
     </header>
   </div>
 
