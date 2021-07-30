@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,52 +59,76 @@
   <!-- title inputbox is in story -->
   <div id="teller-buttons">
 
+   <h1>Title: <%= story.title %> </h1>
 
-    <h1>Title: <%= story.title %>
-    </h1>
-    <% if (story.iscompleted===false) {%>
-      <h3>accepted </h3>
+    <% if (story.iscompleted) {%>
+      <% for(let contribution in contributions) { %>
+        <div><%= contributions[contribution].content %></div>
+        <% } %>
       <% } %>
+
+
+    <% if (!story.iscompleted) {%>
+    <h3>accepted </h3>
+    <% for(let contribution in contributions) { %>
+      <% if (contributions[contribution].status === 'accepted') {%>
+      <div><%= contributions[contribution].content %></div>
+      <% } %>
+    <% } %>
+    <h3>pending </h3>
         <% for(let contribution in contributions) { %>
-          <div>
-            <%= contributions[contribution].content %>
+         <% if (contributions[contribution].status === 'pending') {%>
+          <div><%= contributions[contribution].content %>
+            <script type="text/javascript">
+              var clicks = 0;
+              function hello() {
+                  clicks += 1;
+                  document.getElementById("clicks").innerHTML = clicks;
+              };
+              </script>
+              <button type="button" onclick="hello()">Like</button>
+              <p>Like <a id="clicks">0</a></p>
+            <!-- <button type="submit">
+              <img src="/w6/story-creator-middie/img icons/heart.png" alt="heart-icon">
+            </button> -->
+            <form action="<%= contributions[contribution].id %>/accept" method= "POST">
+              <% if (story.creatorid === userId) { %>
+                <button type="submit">
+                  accepted
+                </button>
+                <% } %>
+              </form>
           </div>
           <% } %>
-            <form method="post" action="/storyShow" value="">
-              <input type="text" name="storyId" value="<%= story.id %>" style="display:none">
-            </form>
+        <% } %>
+    <form method="post" action="/storyShow" value="">
+      <textarea name="content" class="teller-input"
+      placeholder="What happened next?"></textarea>
+      <input  type="text" name="storyId"
+      value="<%= story.id %>" style="display:none">
+      <button type= "submit">
+        submit
+      </button>
+    </form>
+      <% } %>
 
-            <% if (story.iscompleted===false) {%>
-              <h3>pending </h3>
-              <% for(let contribution in contributions) { %>
-                <div>
-                  <%= contributions[contribution].content %>
-                </div>
-                <% } %>
 
-                  <form method="post" action="/storyShow" value="">
-                    <textarea name="content" class="teller-input" placeholder="What happened next?"></textarea>
-                    <input type="text" name="storyId" value="<%= story.id %>" style="display:none">
 
-                    <div id="show-maker-buttons">
-                      <button type="submit">
-                        <img src="/img icons/heart.png" alt="heart-icon">
-                      </button>
 
-                      <button type="submit">
-                        edit name
-                      </button>
+            <!-- <button type="submit">
+              edit name
+            </button>
+            <button type="submit">
+              post/finish
+            </button>
+            <button type="submit">
+              clear/delete
+            </button> -->
 
-                      <button type="submit">
-                        post/finish
-                      </button>
 
-                      <button type="submit">
-                        clear/delete
-                      </button>
-                    </div>
-                  </form>
   </div>
+  </div>
+
 </body>
 
 </html>

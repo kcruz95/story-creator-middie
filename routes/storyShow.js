@@ -5,10 +5,23 @@ const database = require("./database");
 
 module.exports = (db) => {
   // GET request to view storyteller page
-  router.get("/", async(req, res) => {
-    const stories = await database.getAllStories();
-    console.log(stories);
-    res.render("storyShow", { stories: stories });
+  // router.get("/", async(req, res) => {
+  //   const stories = await database.getAllStories();
+  //   console.log(stories);
+  //   res.render("storyShow", { stories: stories });
+  // });
+
+  router.get("/:id", async(req, res) => {
+    const contributions = await database.getContributionsForStory(req.params.id);
+    const story = await database.getAllStories();
+
+    const templateVars = {
+      contributions: contributions,
+      story: story,
+      userId: req.session.userId
+    };
+    console.log('storyShow.js');
+    res.render("storyShow", templateVars);
   });
 
 
@@ -20,9 +33,9 @@ module.exports = (db) => {
     const contribution = {
       userId,
       storyId,
-      content,
+      content
     };
-    console.log('postContributionREQ:', req);
+
     database.addContribution(contribution).then((contribution) => {
       res.redirect("storyInProgress");
     });
@@ -34,22 +47,14 @@ module.exports = (db) => {
   //this merges it to the rest of the story
 
   // accept contribution and merge it on to the story
-  router.post("/:id/accept", (req, res) => {
-    // const contributionId = req.body.contributionsId;
-    const contributionId = req.params.id;
-    const content = req.body.content;
-    const storyId = req.body.storyId;
-    const userId = req.session.userId;
-    const contributions = {
-      contributionId,
-      userId,
-      storyId,
-      content,
-    };
-    console.log('postAcceptReq:', req);
-    database.updateContributions(contributions).then((contributions) => {
-      res.redirect("storyInProgress");
-    });
-  });
+  // router.post("/:id/accept", (req, res) => {
+  //   // const contributionId = req.body.contributionsId;
+  //   const contributionId = req.params.id;
+
+  //   database.updateContributions(contributionId).then(() => {
+
+  //     res.redirect("/storyInProgress");
+  //   });
+  // });
   return router;
 };

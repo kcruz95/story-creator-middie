@@ -43,7 +43,7 @@ const getCompletedStories = function(creatorId = null, limit = 10) {
             WHERE isCompleted = true
             `,)
     .then((result) => {
-      console.log('resultCompletedStories:', result);
+
       return result.rows;
     })
     .catch((err) => {
@@ -109,14 +109,13 @@ exports.addUser = addUser;
  */
 
 
-const getAllStories = function (creatorId = null, limit = 10) {
+const getAllStories = function(creatorId = null, limit = 10) {
   return pool
     .query(`SELECT s.*
             FROM stories s
             JOIN users u ON s.creatorId = u.id
             `,)
     .then((result) => {
-      console.log('resultASDF:', result);
       return result.rows;
     })
     .catch((err) => {
@@ -126,14 +125,14 @@ const getAllStories = function (creatorId = null, limit = 10) {
 exports.getAllStories = getAllStories;
 
 const getStoryById = function (id) {
-  console.log('id:', id);
+
   return pool
     .query(`SELECT *
             FROM stories s
             WHERE s.id = $1
             `, [id])
     .then((result) => {
-      // console.log('result.rows:', result.rows);
+
       return result.rows[0];
     })
     .catch((err) => {
@@ -156,7 +155,7 @@ const getAllContributions = function (userId, limit = 10) {
     .query(`SELECT *
             FROM contributions c
             JOIN users u ON c.userId = u.id`
-            /*WHERE c.userId = $1 LIMIT $2`, [userId, limit]*/)
+    /*WHERE c.userId = $1 LIMIT $2`, [userId, limit]*/)
     .then((result) => {
       return result.rows;
     })
@@ -167,14 +166,14 @@ const getAllContributions = function (userId, limit = 10) {
 exports.getAllContributions = getAllContributions;
 
 // const getContributionsForStory = function(userId, storyId, limit = 10) {
-const getContributionsForStory = function (storyId) {
+const getContributionsForStory = function(storyId) {
   return pool
-    .query(`SELECT *
+    .query(`SELECT c.*
             FROM contributions c
             JOIN stories s ON c.storyId = s.id
             WHERE c.storyId = $1`, [storyId]
 
-            /*LIMIT $3`, [userId, storyId, limit]*/)
+    /*LIMIT $3`, [userId, storyId, limit]*/)
     .then((result) => {
       //console.log()
       return result.rows;
@@ -248,7 +247,7 @@ exports.getAllProperties = getAllProperties;
  */
 
 
-const addStory = function (story) {
+const addStory = function(story) {
   return pool
     .query(
       `INSERT INTO stories (creatorId, title)
@@ -265,7 +264,7 @@ const addStory = function (story) {
 exports.addStory = addStory;
 
 
-const addContribution = function (contribution) {
+const addContribution = function(contribution) {
   return pool
     .query(
       `INSERT INTO contributions (userId, storyId, content)
@@ -304,22 +303,38 @@ const getVoteCount = function (contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-const updateContributions = function (contributionId) {
+
+
+
+const updateStoryToComplete = function (storyId) {
   return pool
     .query(`
-    UPDATE contributions
-    SET status = 'accepted'
-    FROM contributions c
-    JOIN stories s ON c.storyId = s.id
-    WHERE id = $1;
-
-    UPDATE contributions
-    SET status = 'denied'
-    FROM contributions c
-    JOIN stories s ON c.storyId = s.id
-    WHERE id <> $1`, [contributionId])
+    UPDATE stories
+    SET isCompleted = TRUE
+    WHERE id = $1`, [storyId])
     .then((result) => {
       return result.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+
+exports.updateStoryToComplete = updateStoryToComplete;
+
+const updateContributions = function(contributionId) {
+  const sql1 = `UPDATE contributions SET status = 'accepted' WHERE id = $1 RETURNING *`;
+  const sql2 = `UPDATE contributions SET status = 'rejected' WHERE id <> $1 AND storyid = $2`;
+
+  return pool
+    .query(sql1, [contributionId])
+    .then((result) => {
+
+      const record = result.rows[0];
+      console.log('record:',record);
+      console.log('[contributionId, record.storyId]:',[contributionId, record.storyid]);
+      return pool.query(sql2, [contributionId, record.storyid]);
+
     })
     .catch((err) => {
       console.error(err.message);

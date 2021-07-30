@@ -8,7 +8,12 @@ module.exports = (db) => {
   router.get("/", async (req, res) => {
     const stories = await database.getAllStories();
 
-    res.render("storyInProgress", { stories: stories });
+    const templateVars = {
+      stories: stories,
+      userId: req.session.userId
+    };
+    console.log('templateVars:',templateVars);
+    res.render("storyInProgress", templateVars);
   });
 
   router.post("/", (req, res) => {
@@ -19,32 +24,35 @@ module.exports = (db) => {
 
   router.get("/:id", async (req, res) => {
     const storyId = req.params.id;
-
+    console.log(req.session.userId);
     // const email = req.session.email;
     const contributions = await database.getContributionsForStory(storyId);
     const story = await database.getStoryById(storyId);
+    const userId = req.session.userId;
 
     // const templateVars = { shortURL: urlID, longURL: urlDatabase[req.params.shortURL].longURL, user};
-    const templateVars = { contributions, story };
-
+    const templateVars = { userId, contributions, story };
+    console.log(templateVars);
     return res.render("storyShow", templateVars);
   });
 
 
-  // accept contribution and merge it on to the story
+  // post route to change status to complete
   router.post("/:id/complete", (req, res) => {
+    const storyId = req.params.id;
+
+    database.updateStoryToComplete(storyId).then(() => {
+      res.redirect("/storyInProgress");
+    });
+  });
+
+  router.post("/:id/accept", (req, res) => {
     // const contributionId = req.body.contributionsId;
-    const storyId = req.params.storyId;
-    const title = req.body.title;
-    const userId = req.session.userId;
-    const stories = {
-      userId,
-      storyId,
-      title
-    };
-    console.log('postAcceptReq:', req);
-    database.updateStoryToComplete(stories).then((stories) => {
-      res.redirect("completedStory");
+    const contributionId = req.params.id;
+
+    database.updateContributions(contributionId).then(() => {
+
+      res.redirect("/storyInProgress");
     });
   });
 
