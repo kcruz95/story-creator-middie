@@ -18,7 +18,7 @@ The following steps are only for _one_ of the group members to perform.
 2. Update the .env file with your correct local information 
   - username: `labber` 
   - password: `labber` 
-  - database: `midterm`
+  - database: `sputtr`
 3. Install dependencies: `npm i`
 4. Fix to binaries for sass: `npm rebuild node-sass`
 5. Reset database: `npm run db:reset`
@@ -41,3 +41,8 @@ The following steps are only for _one_ of the group members to perform.
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+
+
+## Project Sputtr 
+Our middie proj is a story-making website for kids called Sputtr.
+It is set up in a way that kids can make their own stories using preset sentence templates of fairytales or kids stories or they can write themselves.

@@ -1,4 +1,4 @@
-// load .env data into process.env
+// Load .env data into process.env
 require("dotenv").config();
 
 // Web server config
@@ -18,11 +18,10 @@ const db = new Pool(dbParams);
 db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
-// 'dev' = Concise output colored by response status for development use.
-//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
+// 'dev' = Concise output colored by response status for development use
 app.use(morgan("dev"));
 
-// Using cookie-session as a middleware to manager user sessions
+// Use cookie-session as a middleware to manage user sessions
 app.use(
   cookieSession({
     name: "session",
@@ -44,22 +43,14 @@ app.use(
 app.use(express.static("public"));
 
 
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-// const usersRoutes = require("./routes/users");
-// const widgetsRoutes = require("./routes/widgets");
+// Separate routes for each resource - refer to each route file under routes folder
 const loginRoutes = require("./routes/login");
 const newStory = require("./routes/newStory");
 const storyInProgress = require("./routes/storyInProgress");
 const storyShow = require("./routes/storyShow");
 
 
-
-
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-// app.use("/api/users", usersRoutes(db));
-// app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/newStory", newStory(db));
 app.use("/storyInProgress", storyInProgress(db));
@@ -67,20 +58,13 @@ app.use("/storyShow", storyShow(db));
 // app.use("/error", loginRoutes(db));
 
 
-// Note: mount other resources here, using the same pattern above
-
-
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
-}); // fix app post later
+});
 
-// app.get("/login", (req, res) => {
-
-//   res.render("login");
-// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
