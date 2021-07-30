@@ -1,3 +1,4 @@
+--insert fake data for users, stories, and contributions for the demo
 INSERT INTO users (name, email, password)
 VALUES
 ('alice', 'a@a.com', 123),
@@ -25,10 +26,3 @@ VALUES
 (3, 5, 'This guy wears a cap'),
 (3, 5, 'Striaght up no cap'),
 (3, 5, 'thats fax');
-
-
-
--- INSERT INTO votes (contributionId, userId)
--- VALUES
--- (2,2),
--- (2,3);
