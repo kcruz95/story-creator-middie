@@ -97,7 +97,7 @@
             <!-- <button type="submit">
               <img src="/w6/story-creator-middie/img icons/heart.png" alt="heart-icon">
             </button> -->
-            <form action="<%= story.id %>/update" method= "POST">
+            <form action="<%= contributions[contribution].id %>/accept" method= "POST">
               <% if (story.creatorid === userId) { %>
                 <button type="submit">
                   accepted

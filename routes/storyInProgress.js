@@ -16,7 +16,7 @@ module.exports = (db) => {
     res.render("storyInProgress", templateVars);
   });
 
-  router.post("/", (req, res) => {
+  router.post("/:id", (req, res) => {
     const storyId = req.body.storyId;
 
     //database query
@@ -32,13 +32,13 @@ module.exports = (db) => {
 
     // const templateVars = { shortURL: urlID, longURL: urlDatabase[req.params.shortURL].longURL, user};
     const templateVars = { userId, contributions, story };
-    console.log(templateVars);
+    console.log('templateVars:',templateVars);
     return res.render("storyShow", templateVars);
   });
 
 
   // post route to change status to complete
-  router.post("/:id/accept", (req, res) => {
+  router.post("/:id/complete", (req, res) => {
     const storyId = req.params.id;
 
     database.updateStoryToComplete(storyId).then(() => {
@@ -46,7 +46,7 @@ module.exports = (db) => {
     });
   });
 
-  router.post("/:id/update", (req, res) => {
+  router.post("/:id/accept", (req, res) => {
     // const contributionId = req.body.contributionsId;
     const contributionId = req.params.id;
 

@@ -4,23 +4,19 @@ VALUES
 ('bobby', 'b@b.com', 123),
 ('chris', 'c@c.com', 123);
 
--- INSERT INTO stories (creator_id, title)
--- VALUES
--- (1,'title1'),
--- (2,'title2'),
--- (3,'title3');
-
 INSERT INTO stories (creatorId, title, isCompleted)
 VALUES
-(1,'title1', true),
-(2,'title2', false),
+(1,'The Ugly Barnacle', true),
+(2,'Alouette', false),
 (3,'title3', false);
 
 INSERT INTO contributions (userId, storyId, content)
 VALUES
-(1, 1, 'content1'),
-(2, 2, 'content2'),
-(3, 3, 'content3');
+(1, 1, 'Once there was an ugly barnacle'),
+(2, 1, 'He was SO UGLY, that everyone died.'),
+(3, 1, 'The End.');--,
+-- (2, 2, 'content2'),
+-- (3, 3, 'content3');
 
 INSERT INTO votes (contributionId, userId)
 VALUES

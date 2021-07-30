@@ -20,7 +20,7 @@ module.exports = (db) => {
       story: story,
       userId: req.session.userId
     };
-    console.log('storyShow.js');
+    console.log('templateVars:', templateVars);
     res.render("storyShow", templateVars);
   });
 
@@ -47,14 +47,14 @@ module.exports = (db) => {
   //this merges it to the rest of the story
 
   // accept contribution and merge it on to the story
-  router.post("/:id/accept", (req, res) => {
-    // const contributionId = req.body.contributionsId;
-    const contributionId = req.params.id;
+  // router.post("/:id/accept", (req, res) => {
+  //   // const contributionId = req.body.contributionsId;
+  //   const contributionId = req.params.id;
 
-    database.updateContributions(contributionId).then(() => {
+  //   database.updateContributions(contributionId).then(() => {
 
-      res.redirect("/storyInProgress");
-    });
-  });
+  //     res.redirect("/storyInProgress");
+  //   });
+  // });
   return router;
 };
