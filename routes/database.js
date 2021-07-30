@@ -168,7 +168,7 @@ exports.getAllContributions = getAllContributions;
 // const getContributionsForStory = function(userId, storyId, limit = 10) {
 const getContributionsForStory = function(storyId) {
   return pool
-    .query(`SELECT *
+    .query(`SELECT c.*
             FROM contributions c
             JOIN stories s ON c.storyId = s.id
             WHERE c.storyId = $1`, [storyId]
@@ -303,25 +303,7 @@ const getVoteCount = function (contributionId) {
 exports.getVoteCount = getVoteCount;
 
 
-// const updateContributions = function(contributionId) {
-//   const sql1 = `UPDATE contributions SET status = 'accepted' WHERE id = $1 RETURNING *`;
-//   const sql2 = `UPDATE contributions SET status = 'rejected' WHERE id <> $1 AND storyid = $2`;
 
-//   return pool
-//   .query(sql1, [contributionId])
-//     .then((result) => {
-
-//       const record = result.rows[0];
-//       console.log('record:',record);
-//       console.log('[contributionId, record.storyId]:',[contributionId, record.storyid]);
-//       return pool.query(sql2, [contributionId, record.storyid]);
-
-//     })
-//     .catch((err) => {
-//       console.error(err.message);
-//     });
-// };
-// exports.updateContributions = updateContributions;
 
 
 const updateStoryToComplete = function (storyId) {
@@ -339,3 +321,23 @@ const updateStoryToComplete = function (storyId) {
 };
 
 exports.updateStoryToComplete = updateStoryToComplete;
+
+const updateContributions = function(contributionId) {
+  const sql1 = `UPDATE contributions SET status = 'accepted' WHERE id = $1 RETURNING *`;
+  const sql2 = `UPDATE contributions SET status = 'rejected' WHERE id <> $1 AND storyid = $2`;
+
+  return pool
+    .query(sql1, [contributionId])
+    .then((result) => {
+
+      const record = result.rows[0];
+      console.log('record:',record);
+      console.log('[contributionId, record.storyId]:',[contributionId, record.storyid]);
+      return pool.query(sql2, [contributionId, record.storyid]);
+
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
+exports.updateContributions = updateContributions;

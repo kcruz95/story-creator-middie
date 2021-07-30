@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,20 +70,16 @@
 
     <% if (!story.iscompleted) {%>
     <h3>accepted </h3>
-
     <% for(let contribution in contributions) { %>
       <% if (contributions[contribution].status === 'accepted') {%>
       <div><%= contributions[contribution].content %></div>
       <% } %>
     <% } %>
-
     <h3>pending </h3>
-
         <% for(let contribution in contributions) { %>
          <% if (contributions[contribution].status === 'pending') {%>
           <div><%= contributions[contribution].content %>
             <script type="text/javascript">
-
               var clicks = 0;
               function hello() {
                   clicks += 1;
@@ -91,11 +88,10 @@
               </script>
               <button type="button" onclick="hello()">Like</button>
               <p>Like <a id="clicks">0</a></p>
-
             <!-- <button type="submit">
               <img src="/w6/story-creator-middie/img icons/heart.png" alt="heart-icon">
             </button> -->
-            <form action="<%= story.id %>/update" method= "POST">
+            <form action="<%= contributions[contribution].id %>/accept" method= "POST">
               <% if (story.creatorid === userId) { %>
                 <button type="submit">
                   accepted
@@ -104,12 +100,7 @@
               </form>
           </div>
           <% } %>
-
-
-
         <% } %>
-
-
     <form method="post" action="/storyShow" value="">
       <textarea name="content" class="teller-input"
       placeholder="What happened next?"></textarea>
@@ -119,8 +110,6 @@
         submit
       </button>
     </form>
-
-
       <% } %>
 
 
@@ -129,12 +118,9 @@
             <!-- <button type="submit">
               edit name
             </button>
-
-
             <button type="submit">
               post/finish
             </button>
-
             <button type="submit">
               clear/delete
             </button> -->
