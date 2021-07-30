@@ -31,24 +31,16 @@
     <header id="header">
 
       <div>
-        <a href="/">
-          <button class="header-logout">
+        <form action="/logout" method="POST">
+          <button type="submit" class="header-logout">
             logout
           </button>
-        </a>
+        </form>
       </div>
 
       <div>
         <h1 id="header-sputtr">Sputtr</h1>
       </div>
-
-      <!-- <div>
-        <a href="/completedStory">
-          <button class="header-saved">
-            sputtr'd tales
-          </button>
-        </a>
-      </div> -->
 
       <div>
         <a href="/newStory">
@@ -63,7 +55,7 @@
 
   <div class="progress-title-container">
     <span class="progress-title">
-      sum story titles
+       Story Titles
     </span>
 
     <span id="progress-blurb">
@@ -96,16 +88,6 @@
           <% } %>
           <% } %>
             <% } %>
-
-              <!-- Form tag closes here-->
-
-              <!-- <div id="progress-buttons">
-                <a href="">
-                  <button class="progress-delete">
-                    delete a title
-                  </button>
-                </a>
-              </div> -->
 
   </div>
 

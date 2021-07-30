@@ -32,11 +32,11 @@
     <header id="header">
 
       <div>
-        <a href="/">
-          <button class="header-logout">
+        <form action="/logout" method="POST">
+          <button type="submit" class="header-logout">
             logout
           </button>
-        </a>
+        </form>
       </div>
 
       <div>
@@ -54,9 +54,6 @@
     </header>
   </div>
 
-  <!-- write to make sure ifCompleted === false in order for title(teller-display) && teller-input to show up -->
-  <!-- also write to make ifCompleted === true -->
-  <!-- title inputbox is in story -->
   <div id="teller-buttons">
 
    <h1><%= story.title %> </h1>
@@ -86,7 +83,7 @@
             <script type="text/javascript">
               var clicks = 0;
               function hello(id) {
-                  clicks += 1;
+                  clicks = 1;
                   document.getElementById(id).innerHTML = clicks;
               };
               </script>
@@ -120,24 +117,11 @@
     </form>
       <% } %>
 
-
-
-
-            <!-- <button type="submit">
-              edit name
-            </button>
-            <button type="submit">
-              post/finish
-            </button>
-            <button type="submit">
-              clear/delete
-            </button> -->
-
-
   </div>
-  </div>
+</div>
 
 </body>
+
 
 </html>
 

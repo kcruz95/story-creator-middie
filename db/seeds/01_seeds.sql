@@ -9,20 +9,20 @@ INSERT INTO stories (creatorId, title, isCompleted)
 VALUES
 (1,'The Ugly Barnacle', true),
 (2,'Alouette', false),
-(3,'Issa Story', false),
-(3,'Rhyme on loan', true),
-(3,'This is fax no printer', false);
+(3,'Vin Diesel loves his Family', false),
+(3,'Random fact', true),
+(3,'Another short story', false);
 
 INSERT INTO contributions (userId, storyId, content)
 VALUES
 (1, 1, 'Once there was an ugly barnacle'),
 (2, 1, 'He was SO UGLY, that everyone died.'),
 (3, 1, 'The End.'),
-(3, 4, 'They say he the host at home'),
-(1, 4, 'listening to Post Malone'),
-(2, 4, 'but he got ghost on phone'),
-(2, 4, 'now he feels most alone'),
-(3, 5, 'with his date postpone.'),
-(3, 5, 'This guy wears a cap'),
-(3, 5, 'Striaght up no cap'),
-(3, 5, 'thats fax');
+(3, 4, 'Strawberry is not an actual berry,'),
+(1, 4, 'but a banana is.'),
+(2, 4, 'By technical definition'),
+(2, 4, 'a berry is a fleshy fruit from a single seed'),
+(3, 5, 'Imagine going to Light House,'),
+(3, 5, 'Making it to 6 weeks'),
+(3, 5, 'and doing a project'),
+(3, 5, 'Presenting it today.');

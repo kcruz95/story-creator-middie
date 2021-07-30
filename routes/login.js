@@ -42,12 +42,14 @@ module.exports = (db) => {
   });
 
   // POST request to logout by setting cookie to NULL
-  router.post("/", (req, res) => {
-    req.session = null;
+router.post("/logout", (req, res) => {
 
-    // Redirect back to homepage
-    res.redirect("/");
-  });
+  req.session = null;
+
+  // Redirect back to homepage
+  res.redirect("/");
+});
+
 
   return router;
 };

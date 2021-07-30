@@ -65,6 +65,14 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// POST request to logout by setting cookie to NULL
+app.post("/logout", (req, res) => {
+
+  req.session = null;
+
+  // Redirect back to homepage
+  res.redirect("/");
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

@@ -46,5 +46,13 @@ module.exports = (db) => {
     });
   });
 
+  router.post("/logout", (req, res) => {
+    console.log('post route working');
+    // req.session = null;
+
+    // Redirect back to homepage
+    res.redirect("/");
+  });
+
   return router;
 };
