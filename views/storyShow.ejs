@@ -28,7 +28,7 @@
 
 <body>
 
-  <div id="header-div">
+  <div>
     <header id="header">
 
       <div>
@@ -63,7 +63,7 @@
 
     <% if (story.iscompleted) {%>
       <% for(let contribution in contributions) { %>
-        <div><%= contributions[contribution].content %></div>
+        <span><%= contributions[contribution].content %></span>
         <% } %>
       <% } %>
 
