@@ -209,7 +209,7 @@ const getAllContributions = function() {
     .query(`SELECT *
             FROM contributions c
             JOIN users u ON c.userId = u.id
-            ORDER BY c.updatedAt DESC`)
+            'pending'`)
     .then((result) => {
       return result.rows;
     })
@@ -232,7 +232,7 @@ const getContributionsForStory = function(storyId) {
             FROM contributions c
             JOIN stories s ON c.storyId = s.id
             WHERE c.storyId = $1
-            ORDER BY c.updatedAt DESC`, [storyId])
+            `, [storyId])
     .then((result) => {
       return result.rows;
     })
