@@ -46,3 +46,5 @@ The following steps are only for _one_ of the group members to perform.
 ## Project Sputtr 
 Our middie proj is a story-making website for kids called Sputtr.
 It is set up in a way that kids can make their own stories using preset sentence templates of fairytales or kids stories or they can write themselves.
+
+## Screengrabs
