@@ -52,3 +52,11 @@ It is set up in a way that kids can make their own stories using preset sentence
 !["Sputtr Main Page"](https://github.com/kcruz95/story-creator-middie/blob/master/docs/Sputtr%20Main%20Page.png?raw=true)
 
 !["Sputtr Login Page"](https://github.com/kcruz95/story-creator-middie/blob/master/docs/Sputtr%20Login%20Page.png?raw=true)
+
+!["Sputtr Start A New Story Title Page"](https://github.com/kcruz95/story-creator-middie/blob/master/docs/Sputtr%20A%20New%20Tale%20Page.png?raw=true)
+
+!["Sputtr Start Your New Story Page"](https://github.com/kcruz95/story-creator-middie/blob/master/docs/Sputtr%20Writing%20A%20New%20Story.png?raw=true)
+
+!["Sputtr Continue Your Story Page"](https://github.com/kcruz95/story-creator-middie/blob/master/docs/Sputtr%20Continuing%20A%20Story.png?raw=true)
+
+!["Sputtr Story Title Corkboard Page"](https://github.com/kcruz95/story-creator-middie/blob/master/docs/Sputtr%20Story%20Titles%20Page.png?raw=true)
