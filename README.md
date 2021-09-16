@@ -48,3 +48,7 @@ Our middie proj is a story-making website for kids called Sputtr.
 It is set up in a way that kids can make their own stories using preset sentence templates of fairytales or kids stories or they can write themselves.
 
 ## Screengrabs
+
+!["Sputtr Main Page"](https://github.com/kcruz95/story-creator-middie/blob/master/docs/Sputtr%20Main%20Page.png?raw=true)
+
+!["Sputtr Login Page"](https://github.com/kcruz95/story-creator-middie/blob/master/docs/Sputtr%20Login%20Page.png?raw=true)
